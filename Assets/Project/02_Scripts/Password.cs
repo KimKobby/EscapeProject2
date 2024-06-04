@@ -7,7 +7,9 @@ namespace Shim
     public class Password : MonoBehaviour
     {
         public GameObject[] numberObjects; // 숫자 오브젝트 배열
+        public GameObject Potion; // 포션 오브젝트
         private List<int> password; // 생성된 암호를 저장할 리스트
+        private bool passwordRevealed = false; // 암호가 이미 표시되었는지 여부
 
         private void Start()
         {
@@ -19,9 +21,6 @@ namespace Shim
 
             // 생성된 암호를 출력합니다.
             Debug.Log("생성된 암호: " + string.Join("", password));
-
-            // 암호를 순차적으로 활성화하고 비활성화합니다.
-            StartCoroutine(DisplayPassword());
         }
 
         // 암호를 생성하는 함수
@@ -29,22 +28,26 @@ namespace Shim
         {
             password = new List<int>();
 
-            // 암호의 각 자리에 0부터 9까지의 숫자를 랜덤으로 생성하여 저장합니다.
-            while (password.Count < 4)
+            // 0부터 9까지의 숫자 중 랜덤으로 4자리 암호를 생성합니다.
+            for (int i = 0; i < 4; i++)
             {
                 int digit = Random.Range(0, 10);
-                if (!password.Contains(digit))
-                {
-                    password.Add(digit);
-                }
+                password.Add(digit);
             }
+        }
 
-            // 암호를 정렬합니다.
-            password.Sort();
+        // 포션과 충돌했을 때 호출되는 함수
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject == Potion && !passwordRevealed)
+            {
+                StartCoroutine(DisplayPassword());
+                passwordRevealed = true;
+            }
         }
 
         // 암호를 순차적으로 활성화하고 비활성화하는 코루틴
-        IEnumerator DisplayPassword()
+        private IEnumerator DisplayPassword()
         {
             // 암호를 두 번 반복합니다.
             for (int j = 0; j < 2; j++)
@@ -63,6 +66,5 @@ namespace Shim
                 }
             }
         }
-
     }
 }
