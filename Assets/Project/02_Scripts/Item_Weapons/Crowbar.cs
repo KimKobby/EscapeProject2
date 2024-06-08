@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Weapons;
 
 namespace Weapons.MeleeWeapons
 {
@@ -20,7 +19,8 @@ namespace Weapons.MeleeWeapons
         {
             if(Input.GetMouseButton(0))
             {
-                attack(stunDamage);
+                Swing(stunDamage);
+
             }
         }
 
