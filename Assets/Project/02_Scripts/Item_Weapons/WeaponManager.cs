@@ -13,8 +13,6 @@ namespace Weapons
         private List<GameObject> potionWeapons = new List<GameObject>();
 
 
-
-
     }
 
 }
