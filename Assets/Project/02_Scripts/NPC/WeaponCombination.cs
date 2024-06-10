@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Common;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 using Weapons;
 
 
@@ -9,63 +11,60 @@ namespace NPC
 {
     public class WeaponCombination : MonoBehaviour
     {
-        public List<GameObject> combinationBox = new List<GameObject>(); // 조합 박스 
+        private List<GameObject> combinationBox = new List<GameObject>(); // 조합 박스 
 
-        public GameObject combinationWeapon;  // 조합된 무기
-
-        public GameObject combinatioWweaponPrefab;  // 조합 무기 프리팹
-
-        public int combinationDamage;  //  조합 스턴 데미지
-
-
-
-        public void Combination()
+        public void WeaponAddList(SelectEnterEventArgs args)  // 소켓 아이템 추가
         {
-            combinationDamage = 0;  // 조합데미지 0 으로 초기화
+            combinationBox.Add(args.interactableObject.transform.gameObject);
+        }
 
-            for (int i = 0; i < combinationBox.Count; i++)
+        public void WeaponRemoveList(SelectExitEventArgs args)  // 소켓 아이템 제거
+        {
+            combinationBox.Remove(args.interactableObject.transform.gameObject);
+        }
+
+
+
+        public void Combination()  // 무기 조합 기능
+        {
+            int combinationDamage = 0;  // 조합데미지 0 으로 초기화
+
+            if (combinationBox != null)
             {
-                Weapon weapon = combinationBox[i].GetComponent<Weapon>();
-                if (weapon != null)
+                for (int i = 0; i < combinationBox.Count; i++)
                 {
-                    combinationDamage += weapon.stunDamage;
-                }
-                else
-                {
-                    Debug.Log(combinationBox[i].name + "무기가 무기클래스를 상속받지 못했습니다.");
-                }
 
+                    if (combinationBox[i].GetComponent<Weapon>() != null)
+                    {
+                        combinationDamage += combinationBox[i].GetComponent<Weapon>().stunDamage;
+                    }
+                    else
+                    {
+                        Debug.Log(combinationBox[i].name + "무기가 Weapon클래스를 상속받은 무기가 아닙니다.");
+                    }
+                }
+                CreateCombinationWeapon(combinationDamage);
             }
-            CreateWeaponFromPrefab();
-            NewCombinationWeapon();
-
-        }
-
-        private void NewCombinationWeapon()
-        {
-            combinationWeapon = new GameObject("CombinedWeapon"); // 새로운 GameObject 생성
-            combinationWeapon = combinatioWweaponPrefab;
-            Weapon combinedWeapon = combinationWeapon.AddComponent<Weapon>(); // Weapon 컴포넌트 추가
-            combinedWeapon.stunDamage = combinationDamage;  // stunDamage 값을 combinationDamage로 설정
-
-        }
-
-
-        //--------------------------------------------------------------------------------------------------------------
-        
-       
-
-        void CreateWeaponFromPrefab()  // 프리팹 인스턴스화
-        {
-            GameObject weaponInstance = Instantiate(combinatioWweaponPrefab, transform.parent);
-
-            // 필요한 경우, weaponInstance를 사용하여 추가 설정을 할 수 있습니다.
-            // 예를 들어, 생성된 오브젝트에 Weapon 컴포넌트가 있다면 다음과 같이 접근할 수 있습니다.
-            Weapon weaponComponent = weaponInstance.GetComponent<Weapon>();
-            if (weaponComponent != null)
+            else
             {
-                // 여기서 weaponComponent의 속성을 설정할 수 있습니다.
-                weaponComponent.stunDamage = combinationDamage; // 예시로 조합된 데미지 값을 설정
+                Debug.Log("조합 할 무기가 없습니다.");
+            }
+
+
+        }
+
+        private void CreateCombinationWeapon(int _combinationDamage)  // 새 조합 무기 생성 기능
+        {
+            GameObject combinationWeapon = new GameObject("NewCombinedWeapon"); // 새로운 GameObject 생성 초기화           
+            combinationWeapon = Instantiate(combinationBox[0], transform.GetChild(1).GetChild(4).gameObject.transform.position, Quaternion.identity);  // 첫번째로 들어온 무기를 메인으로 인스턴스
+
+            if (combinationWeapon != null)
+            {
+                combinationWeapon.GetComponent<Weapon>().stunDamage = _combinationDamage;  // 조합무기의 stunDamage 값을 combinationDamage로 설정
+            }
+            else
+            {
+                Debug.Log("조합된 무기가 만들어지지 않았습니다.");
             }
         }
     }
