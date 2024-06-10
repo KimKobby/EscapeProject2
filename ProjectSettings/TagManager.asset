@@ -6,8 +6,6 @@ TagManager:
   tags:
   - InteractiveObject
   - Fuse
-  - MeleeWeapon
-  - PotionWeapon
   layers:
   - Default
   - TransparentFX
@@ -15,8 +13,8 @@ TagManager:
   - PostProcessing
   - Water
   - UI
+  - None Nav
   - 
-  - Weapon
   - 
   - 
   - 
