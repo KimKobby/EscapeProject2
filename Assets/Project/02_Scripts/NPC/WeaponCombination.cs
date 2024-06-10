@@ -33,7 +33,6 @@ namespace NPC
             {
                 for (int i = 0; i < combinationBox.Count; i++)
                 {
-
                     if (combinationBox[i].GetComponent<Weapon>() != null)
                     {
                         combinationDamage += combinationBox[i].GetComponent<Weapon>().stunDamage;
@@ -49,18 +48,20 @@ namespace NPC
             {
                 Debug.Log("조합 할 무기가 없습니다.");
             }
-
-
         }
 
         private void CreateCombinationWeapon(int _combinationDamage)  // 새 조합 무기 생성 기능
-        {
-            GameObject combinationWeapon = new GameObject("NewCombinedWeapon"); // 새로운 GameObject 생성 초기화           
-            combinationWeapon = Instantiate(combinationBox[0], transform.GetChild(1).GetChild(4).gameObject.transform.position, Quaternion.identity);  // 첫번째로 들어온 무기를 메인으로 인스턴스
+        {  
+            GameObject combinationWeapon = Instantiate(combinationBox[0], transform.GetChild(1).GetChild(4).gameObject.transform.position, Quaternion.identity);  // 첫번째로 들어온 무기를 메인으로 인스턴스
 
             if (combinationWeapon != null)
             {
                 combinationWeapon.GetComponent<Weapon>().stunDamage = _combinationDamage;  // 조합무기의 stunDamage 값을 combinationDamage로 설정
+                for (int i = 0; i < combinationBox.Count; i++)
+                {
+                    Debug.Log(combinationBox[i].name);
+                    combinationBox[i].SetActive(false);
+                }
             }
             else
             {
