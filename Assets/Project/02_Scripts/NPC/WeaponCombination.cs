@@ -81,10 +81,26 @@ namespace NPC
 
         private void CreateCombinationWeapon(int _combinationDamage)  // 새 조합 무기 생성 기능
         {
-            GameObject combinationWeapon = Instantiate(combinationBox[0], transform.GetChild(1).GetChild(4).gameObject.transform.position, Quaternion.identity);  // 첫번째로 들어온 무기를 메인으로 인스턴스
+            // 첫번째로 들어온 무기를 메인으로 인스턴스
+            GameObject combinationWeapon = Instantiate(combinationBox[0], transform.GetChild(1).GetChild(4).gameObject.transform.position, Quaternion.identity); 
+
+            // RIgidbody 값 설정
             combinationWeapon.GetComponent<Rigidbody>().angularDrag = 0.05f;
             combinationWeapon.GetComponent<Rigidbody>().useGravity = true;
             combinationWeapon.GetComponent<Rigidbody>().isKinematic = false;
+
+            // 대상의 머티리얼 가져옴
+            Material newMat = combinationWeapon.GetComponent<MeshRenderer>().material; 
+
+            // 머티리얼 변경
+            newMat.EnableKeyword("_EMISSION");
+            newMat.SetTexture("_EmissionMap", newMat.GetTexture("_BaseMap"));
+            newMat.SetColor("_EmissionColor", new Color(190f, 8f, 0f));
+            newMat.SetFloat("_EmissionIntensity", 5.5f);
+
+            // 변경된 머티리얼 적용
+            combinationWeapon.GetComponent<MeshRenderer>().material = newMat; 
+
 
             if (combinationWeapon != null)
             {
