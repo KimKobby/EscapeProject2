@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - InteractiveObject
+  - Fuse
+  - MeleeWeapon
+  - PotionWeapon
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -11,16 +16,16 @@ TagManager:
   - PostProcessing
   - Water
   - UI
+  - None Nav
+  - NPC
+  - 
+  - 
+  - Weapon
   - 
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Stairs
   - 
   - 
   - 
