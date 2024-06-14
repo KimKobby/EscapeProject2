@@ -51,6 +51,7 @@ namespace Song
         }
         void Start()
         {
+          //  this.transform.position = new Vector3(this.transform.position.x, 0.5f, this.transform.position.z);
             Inventory.gameObject.SetActive(false);
             clockCanvas.transform.gameObject.SetActive(false);
             actionAsset.actionMaps[8].actions[0].canceled += PlayerSitandStand;
