@@ -6,7 +6,7 @@ public class Detect : MonoBehaviour
 {
     [SerializeField]
     private GameObject door;
-    private bool isLocked = false;
+    public bool isLocked = false;
 
     private void OnTriggerExit(Collider other)
     {
