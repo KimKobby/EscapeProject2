@@ -9,6 +9,7 @@ TagManager:
   - MeleeWeapon
   - PotionWeapon
   - Enemy
+  - Hand
   layers:
   - Default
   - TransparentFX
