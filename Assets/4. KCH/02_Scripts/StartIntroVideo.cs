@@ -20,7 +20,7 @@ namespace Intro
 
         private void HideVideo(VideoPlayer videoPlayer)
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
             videoPlayer = introVideo;
             //introVideo.gameObject.SetActive(false);
 

@@ -46,7 +46,7 @@ namespace Song
             if (startBox.GetComponent<SocketCheck>().GetStartCheck())
             {
                 Debug.Log("StartCheck");
-                SceneManager.LoadScene(1);
+                SceneManager.LoadScene(0);
                
 
             }
