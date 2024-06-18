@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Park
-{
+
     public class WallMove : MonoBehaviour
     {
         private Vector3 startPos;
@@ -12,7 +11,7 @@ namespace Park
 
         public float WallSpeed;
 
-        private float times;//10000ƒtƒŒ[ƒ€‚Â‚©‚Á‚ÄˆÚ“®‚·‚é‚±‚Æ‚É‚·‚é
+        private float times;//10000ƒtƒŒ??‚Â‚©‚Á‚ÄˆÚ“®‚·‚é‚±‚Æ‚É‚·‚é
         // Start is called before the first frame update
         void Start()
         {
@@ -37,4 +36,3 @@ namespace Park
             }
         }
     }
-}
