@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,14 +12,16 @@ namespace Park
 
         public float WallSpeed;
 
-        private float times;//10000ƒtƒŒ[ƒ€‚Â‚©‚Á‚ÄˆÚ“®‚·‚é‚±‚Æ‚É‚·‚é
+        public Detect _detect; //DtectScriptã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+
+        private float times;//10000ãƒ•ãƒ¬ãƒ¼ãƒ ã¤ã‹ã£ã¦ç§»å‹•ã™ã‚‹ã“ã¨ã«ã™ã‚‹
         // Start is called before the first frame update
         void Start()
         {
-            //•Ç‚Ì‰ŠúˆÊ’u‚ğ•Û‘¶
+            //å£ã®åˆæœŸä½ç½®ã‚’ä¿å­˜
             startPos = this.transform.localPosition;
 
-            //•Ç‚Ì“’…‚·‚é–Ú•W‚Æ‚·‚éÀ•W
+            //å£ã®åˆ°ç€ã™ã‚‹ç›®æ¨™ã¨ã™ã‚‹åº§æ¨™
             targetPos = new Vector3(-5.23f, 0.16f, -4.85f);
 
             times = 0.0f;
@@ -28,12 +30,16 @@ namespace Park
         // Update is called once per frame
         void Update()
         {
-            times += 0.001f * WallSpeed;
-            //Debug.Log(times);
-
-            if (times <= 1)
+            if (_detect.isLocked) //FlagãŒç«‹ã£ãŸã‚‰
             {
-                this.transform.localPosition = Vector3.Lerp(startPos, targetPos, times);
+
+                times += 0.001f * WallSpeed;
+                //Debug.Log(times);
+
+                if (times <= 1)
+                {
+                    this.transform.localPosition = Vector3.Lerp(startPos, targetPos, times);
+                }
             }
         }
     }
