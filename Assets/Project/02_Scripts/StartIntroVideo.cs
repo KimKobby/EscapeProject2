@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
-
-namespace Start
+using UnityEngine.SceneManagement;
+namespace Intro
 {
     public class StartIntroVideo : MonoBehaviour
     {
@@ -18,24 +18,30 @@ namespace Start
             introVideo.loopPointReached += HideVideo;
         }
 
-        private void HideVideo(VideoPlayer vp)
+        private void HideVideo(VideoPlayer videoPlayer)
         {
-            vp = introVideo;
-            introVideo.gameObject.SetActive(false);
+            SceneManager.LoadScene(1);
+            videoPlayer = introVideo;
+            //introVideo.gameObject.SetActive(false);
+
         }
 
 
         private void Start()
         {
             introVideo = this.GetComponent<VideoPlayer>();
-        }
-
-        private void Update()
-        {
-            if (!isVideo && Input.GetMouseButtonDown(1))
+            if (!isVideo)
             {
                 OnVideo();
             }
         }
+
+        //private void Update()
+        //{
+        //    if (!isVideo && Input.GetMouseButtonDown(1))
+        //    {
+        //        OnVideo();
+        //    }
+        //}
     }
 }
