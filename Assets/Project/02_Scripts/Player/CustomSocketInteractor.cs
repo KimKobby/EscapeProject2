@@ -27,7 +27,7 @@ namespace Song
         void CheckSocket(SelectEnterEventArgs args)
         {
 
-            if (args.interactableObject.transform.name[0].ToString() == this.transform.name)
+            if (args.interactableObject.transform.name[4].ToString() == this.transform.name)
             {
                 socketStr = this.transform.name;
 
