@@ -5,9 +5,11 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class AutoSizing : MonoBehaviour
 {
-    private BoxCollider socketCollider;
-    private GameObject holdObject;
-    private float scaleMultiplier = 0.9f; // 오브젝트 크기 조절 비율
+    private BoxCollider socketCollider;  //  소켓 BoxCollider
+    private GameObject holdObject;  // 리사이징 할 소켓에 들어간 오브젝트
+    private float holdObjectScale;  // 소켓에 들어간 오브젝트 원래 스케일값
+    private float restoreScale;  // 스케일 1로 계산 하기 위한 값
+    private float scaleMultiplier = 0.8f; // 오브젝트 크기 조절 비율
 
     private void Start()
     {
@@ -16,28 +18,19 @@ public class AutoSizing : MonoBehaviour
 
     public void ReSizing(SelectEnterEventArgs args)
     {
-        Debug.Log("tor : " + args.interactorObject.transform.name);
-        Debug.Log("table : " + args.interactableObject.transform.name);
-        //holdObject = args.interactableObject.transform.gameObject;
-        //Debug.Log(holdObject.gameObject.name);
-        //Debug.Log(holdObject.transform.localScale.x);
-        //Debug.Log(holdObject.transform.localScale.y);
-        //Debug.Log(holdObject.transform.localScale.z);
+        // 소켓에 들어간 오브젝트 지정
+        holdObject = args.interactableObject.transform.GetChild(0).GetChild(0).gameObject;
 
-        //holdObject.transform.localScale = new Vector3(
-        //    (socketCollider.size.x * scaleMultiplier),
-        //    (socketCollider.size.y * scaleMultiplier),
-        //    (socketCollider.size.z * scaleMultiplier)
-        //    );
+        // 소켓에 들어간 오브젝트 원래 스케일값 지정
+        holdObjectScale = args.interactableObject.transform.GetChild(0).gameObject.transform.localScale.x;
 
-        Vector3 newScale = Vector3.one * socketCollider.size.x * scaleMultiplier;
-        args.interactableObject.transform.GetChild(0).GetChild(0).localScale = newScale;
+        // 소켓에 들어간 오브젝트를 스케일 1로 계산 하기 위한 값
+        restoreScale = 1/holdObjectScale;
 
-        //args.interactableObject.transform.gameObject.transform.localScale = holdObject.transform.localScale;
+        // 소켓에 맞게 계산
+        Vector3 newScale = Vector3.one * restoreScale * socketCollider.size.x * scaleMultiplier;
 
-        //Debug.Log(holdObject.transform.localScale.x);
-        //Debug.Log(holdObject.transform.localScale.y);
-        //Debug.Log(holdObject.transform.localScale.z);
+        holdObject.transform.localScale = newScale;
     }
 
     public void restoreSizing(SelectExitEventArgs args)
