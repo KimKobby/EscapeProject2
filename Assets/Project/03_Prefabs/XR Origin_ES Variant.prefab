@@ -771,6 +771,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 6660235942996343051, guid: fa47a6505d261d94aa750030119cb4d1, type: 3}
     - {fileID: 7149104169202741693, guid: fa47a6505d261d94aa750030119cb4d1, type: 3}
+    - {fileID: 8604521051886552110, guid: fa47a6505d261d94aa750030119cb4d1, type: 3}
     m_RemovedGameObjects:
     - {fileID: 8853466816701781747, guid: fa47a6505d261d94aa750030119cb4d1, type: 3}
     m_AddedGameObjects:
@@ -791,6 +792,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5270195344221808042}
+    - targetCorrespondingSourceObject: {fileID: 6707823870491207678, guid: fa47a6505d261d94aa750030119cb4d1,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2563404229517102244}
     - targetCorrespondingSourceObject: {fileID: 8296429926985587558, guid: fa47a6505d261d94aa750030119cb4d1,
         type: 3}
       insertIndex: -1
@@ -934,6 +939,48 @@ MonoBehaviour:
   clockCanvas: {fileID: 5791752712037168943}
   Inventory: {fileID: 4441879341788307460}
   isClicked: 0
+--- !u!114 &2563404229517102244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2815667545834811624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2213c36610e3b1c4bbf886810ed9db12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_System: {fileID: 0}
+  m_TurnAmount: 45
+  m_DebounceTime: 0.5
+  m_EnableTurnLeftRight: 1
+  m_EnableTurnAround: 1
+  m_DelayTime: 0
+  m_LeftHandSnapTurnAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Left Hand Snap Turn
+      m_Type: 0
+      m_ExpectedControlType: Vector2
+      m_Id: 66998f4b-65dd-4427-861b-1ef771732a7c
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  m_RightHandSnapTurnAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Right Hand Snap Turn
+      m_Type: 0
+      m_ExpectedControlType: Vector2
+      m_Id: 1e696459-c429-4808-8b5f-beb6b3978189
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
 --- !u!4 &5670951962516678414 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3798500626800554008, guid: fa47a6505d261d94aa750030119cb4d1,

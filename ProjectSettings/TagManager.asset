@@ -9,6 +9,8 @@ TagManager:
   - MeleeWeapon
   - PotionWeapon
   - Enemy
+  - Hand
+  - Btn
   layers:
   - Default
   - TransparentFX
