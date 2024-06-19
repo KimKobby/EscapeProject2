@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Park
-{
+
     public class WallMove : MonoBehaviour
     {
         private Vector3 startPos;
@@ -43,4 +42,3 @@ namespace Park
             }
         }
     }
-}
