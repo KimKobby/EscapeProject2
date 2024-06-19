@@ -11,7 +11,7 @@ using UnityEngine;
 
         public float WallSpeed;
 
-        public Detect _detect; //DtectScriptのオブジェクト
+        public Detect2 _detect; //DtectScriptのオブジェクト
 
         private float times;//10000フレームつかって移動することにする
         // Start is called before the first frame update
