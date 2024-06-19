@@ -6,17 +6,10 @@ namespace Shim
     {
         public Material greenMaterial; // 녹색 머티리얼
         public Material redMaterial;   // 빨간색 머티리얼
-        public AudioClip insertSound;  // 퓨즈 삽입 소리
-        public AudioClip removeSound;  // 퓨즈 제거 소리
-        public AudioClip allFusesConnectedSound;  // 모든 퓨즈 연결 소리
         private bool fuseInserted = false; // 퓨즈 아이템이 소켓에 삽입되었는지 여부
-
-        private AudioSource audioSource;
 
         private void Start()
         {
-            // 오디오 소스 컴포넌트 가져오기
-            audioSource = GetComponent<AudioSource>();
         }
 
         // 퓨즈가 연결되었는지 여부를 반환하는 메서드
@@ -38,13 +31,13 @@ namespace Shim
                 Debug.Log("Material이 green으로 변경됩니다.");
 
                 // 퓨즈 삽입 소리 재생
-                PlaySound(insertSound);
+                //PlaySound(insertSound);
 
                 // 모든 퓨즈가 연결되었는지 확인
-                if (AreAllFusesConnected())
-                {
-                    PlaySound(allFusesConnectedSound);
-                }
+                //if (AreAllFusesConnected())
+                //{
+                //    PlaySound(allFusesConnectedSound);
+                //}
             }
         }
 
@@ -60,7 +53,7 @@ namespace Shim
                 ChangeLightMaterial(redMaterial);
 
                 // 퓨즈 제거 소리 재생
-                PlaySound(removeSound);
+                //PlaySound(removeSound);
             }
         }
 
@@ -78,26 +71,26 @@ namespace Shim
             Debug.Log("Material이 변경되었습니다.");
         }
 
-        private void PlaySound(AudioClip clip)
-        {
-            if (audioSource != null && clip != null)
-            {
-                audioSource.PlayOneShot(clip);
-            }
-        }
+        //private void PlaySound(AudioClip clip)
+        //{
+        //    if (audioSource != null && clip != null)
+        //    {
+        //        audioSource.PlayOneShot(clip);
+        //    }
+        //}
 
-        private bool AreAllFusesConnected()
-        {
-            // 모든 FuseSocket 오브젝트를 찾고 모든 소켓에 퓨즈가 연결되었는지 확인
-            FuseSocket[] allFuseSockets = FindObjectsOfType<FuseSocket>();
-            foreach (FuseSocket socket in allFuseSockets)
-            {
-                if (!socket.IsFuseConnected())
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
+        //private bool AreAllFusesConnected()
+        //{
+        //    // 모든 FuseSocket 오브젝트를 찾고 모든 소켓에 퓨즈가 연결되었는지 확인
+        //    FuseSocket[] allFuseSockets = FindObjectsOfType<FuseSocket>();
+        //    foreach (FuseSocket socket in allFuseSockets)
+        //    {
+        //        if (!socket.IsFuseConnected())
+        //        {
+        //            return false;
+        //        }
+        //    }
+        //    return true;
+        //}
     }
 }
