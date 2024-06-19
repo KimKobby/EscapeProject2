@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.HID;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.UIElements.Experimental;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -16,11 +17,16 @@ namespace Song
     {
         public InputActionAsset actionAsset;
 
+        public GameObject cameraOffset;
+
         public GameObject leftRayController;
         public GameObject rightRayController;
 
         public GameObject leftDirectController;
         public GameObject rightDeirectController;
+
+
+        public GameObject controlleroffset;
 
         public bool b_RightControllerRay;
 
@@ -59,11 +65,18 @@ namespace Song
 
         void Update()
         {
+
             LeftHandCheck();
             TriggerClick();
             InventoryOn();
             PlayerMoveSpeed();
 
+        }
+
+
+        void PlayerRotateLock()
+        {
+            //this.transform.root
         }
 
         private void TriggerClick()
@@ -77,6 +90,7 @@ namespace Song
            
             if (rightControllerVal == 1f)
             {
+                this.GetComponent<ActionBasedSnapTurnProvider>().enabled = false;
                 b_RightControllerRay = true;
                 rightRayController.SetActive(true);
                 rightDeirectController.SetActive(false);
@@ -84,6 +98,7 @@ namespace Song
             }
             else if (rightControllerVal == 0f)
             {
+                this.GetComponent<ActionBasedSnapTurnProvider>().enabled = true;
                 b_RightControllerRay = false;
 
                 leftRayController.SetActive(false);
@@ -176,12 +191,27 @@ namespace Song
             //X 토글방식 앉기 일어서기
             if (xButtonClick)
             {
-                this.transform.position = new Vector3(this.transform.position.x, -0.5f, this.transform.position.z);
-               
+                Vector3 caf = cameraOffset.transform.position;
+                Vector3 cof = controlleroffset.transform.position;
+                cameraOffset.transform.position = new Vector3(caf.x, caf.y - 1f, caf.z);
+                controlleroffset.transform.position = new Vector3(cof.x, cof.y - 1f, cof.z);
+                //this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - 0.5f, this.transform.position.z);
+
+
             }
             else
-                this.transform.position = new Vector3(this.transform.position.x, 0.5f, this.transform.position.z);
+            {
+                Vector3 caf = cameraOffset.transform.position;
+                Vector3 cof = controlleroffset.transform.position;
+                cameraOffset.transform.position = new Vector3(caf.x, caf.y + 1f, caf.z);
+                controlleroffset.transform.position = new Vector3(cof.x, cof.y + 1f, cof.z);
+                //this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.5f, this.transform.position.z);
+            }
+
         }
 
+      
     }
+
+   
 }

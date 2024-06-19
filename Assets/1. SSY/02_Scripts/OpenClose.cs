@@ -1,19 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class OpenClose : MonoBehaviour
 {
      [SerializeField] public GameObject GrabInteractor;
+    [SerializeField] public float default_pos;
     [SerializeField] public float default_rot;
 
-    [SerializeField] public float change_rot;
+    [SerializeField] public float change_rot_x;
+    [SerializeField] public float change_rot_y;
+    [SerializeField] public float change_rot_z
+        ;
+    [SerializeField] public float change_pos_x;
+    [SerializeField] public float change_pos_y;
+    [SerializeField] public float change_pos_z;
+
 
     public Quaternion startRotation;
     public Quaternion endRotation;
+
+    public Vector3 startPosition;
+    public Vector3 endPosition;
+
     [SerializeField] private bool isRot;
+    [SerializeField] private bool  isPos;
 
     private bool isOpen;
+  
 
 
     [SerializeField] private float elapsedTime = 0.0f;
@@ -22,12 +37,12 @@ public class OpenClose : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      
+        startPosition = this.transform.position;
         startRotation = this.transform.rotation;
         Vector3 eulerRotation = startRotation.eulerAngles;
 
-        endRotation = Quaternion.Euler(eulerRotation.x, eulerRotation.y + change_rot, eulerRotation.z);
-      
+        endRotation = Quaternion.Euler(eulerRotation.x+ change_rot_x, eulerRotation.y + change_rot_y, eulerRotation.z+ change_rot_z);
+        endPosition = new Vector3(startPosition.x + change_pos_x, startPosition.y + change_pos_y, startPosition.z + change_pos_z);
     }
 
     // Update is called once per frame
@@ -42,7 +57,7 @@ public class OpenClose : MonoBehaviour
                 elapsedTime += Time.deltaTime;
                 float t = Mathf.Clamp01(elapsedTime / durationTime);
                 transform.rotation = Quaternion.Lerp(startRotation, endRotation, t);
-
+                transform.position = Vector3.Lerp(startPosition, endPosition, t);
                 if (t >= 1f)
                 {
                     isOpen = true;
@@ -70,13 +85,45 @@ public class OpenClose : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Hand"))
-        {
-            
-            Debug.Log("Player 충돌");
-            isRot = true;
-          
-        }
+        
+            if (!isOpen)
+            {
+                //this.transform.GetComponent<Collider>().enabled = false;  
+                elapsedTime += Time.deltaTime;
+                float t = Mathf.Clamp01(elapsedTime / durationTime);
+                transform.rotation = Quaternion.Lerp(startRotation, endRotation, t);
+
+                if (t >= 1f)
+                {
+                    isOpen = true;
+                    isRot = false;
+                    elapsedTime = 0f;
+                }
+            }
+            else
+            {
+
+                elapsedTime += Time.deltaTime;
+                float t = Mathf.Clamp01(elapsedTime / durationTime);
+                transform.rotation = Quaternion.Lerp(endRotation, startRotation, t);
+
+                if (t >= 1f)
+                {
+                    isOpen = false;
+                    isRot = false;
+                    elapsedTime = 0f;
+                }
+            }
+
+            if (other.CompareTag("Hand"))
+            {
+
+                Debug.Log("Player 충돌");
+                isRot = true;
+
+            }
+      
+       
 
     }
 }

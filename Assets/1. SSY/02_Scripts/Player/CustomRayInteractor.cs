@@ -1,26 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Transformers;
+using UnityEngine.XR.Interaction.Toolkit.UI;
 
 namespace Song
 {
     public class CustomRayInteractor : XRRayInteractor
     {
+        private ControllerInputData controllerinputdata;
+
+
         void Start()
         {
             // Debug.Log("Start");
+            controllerinputdata = this.transform.root.GetComponent<ControllerInputData>();
 
             this.selectEntered.AddListener(SelectSomething);
             this.selectExited.AddListener(SelectExitSomething);
             this.hoverEntered.AddListener(HoverEnterSomething);
             this.hoverExited.AddListener(HoverExitSomething);
+            this.uiHoverEntered.AddListener(RightHandRaySelect);
         }
 
         //Ray컨트롤러 클릭 시 
         public void SelectSomething(SelectEnterEventArgs args)
         {
+
+            Debug.Log("SELECT");
             //자물쇠 돌릴때
             if (args.interactableObject.transform.CompareTag("Well"))
             {
@@ -53,6 +63,11 @@ namespace Song
 
         private void HoverEnterSomething(HoverEnterEventArgs  args)
         {
+          if(args.interactableObject.transform.gameObject.layer ==  5)
+            {
+                Debug.Log("HoverEnterSomething");
+            }
+
             if (args.interactableObject.transform.CompareTag("Btn"))
             {
                // Debug.Log("Button Hover");
@@ -73,6 +88,27 @@ namespace Song
         private void HoverExitSomething(HoverExitEventArgs args)
         {
            // Debug.Log("Hover Exit");
+        }
+
+        void RightHandRaySelect(UIHoverEventArgs args)
+        {
+            //Start Btn 클릭 시
+            if (controllerinputdata.getInRaySelectVal() == 1f && args.uiObject.name == "Btn_Start")
+            {
+                args.uiObject.transform.root.GetChild(0).GetComponent<UIScript>().StartClick();
+            }
+
+            //Setting Btn 클릭 시
+            if (controllerinputdata.getInRaySelectVal() == 1f && args.uiObject.name == "Btn_Setting")
+            {
+                args.uiObject.transform.root.GetChild(0).GetComponent<UIScript>().SettingClick();
+            }
+
+            //Alpha Btn 클릭 시
+            if (controllerinputdata.getInRaySelectVal() == 1f && args.uiObject.name == "Btn_Alpha")
+            {
+                args.uiObject.transform.root.GetChild(0).GetComponent<UIScript>().AlphaClick();
+            }
         }
 
     }

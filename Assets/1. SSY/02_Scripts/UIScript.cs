@@ -39,20 +39,20 @@ namespace Song
 
         }
 
-        void StartClick()
+        public void StartClick()
         {
             startBox.GetComponent<SocketCheck>().OnClickStartBtn();
             Debug.Log("StartClick");
             if (startBox.GetComponent<SocketCheck>().GetStartCheck())
             {
                 Debug.Log("StartCheck");
-                SceneManager.LoadScene(0);
+                SceneManager.LoadScene(1);
                
 
             }
         }
 
-        void SettingClick()
+        public void SettingClick()
         {
             // Debug.Log("SettingClick");
             settingBox.GetComponent<SocketCheck>().OnClickStartBtn();
@@ -72,7 +72,7 @@ namespace Song
             Debug.Log("Reset");
         }
 
-        void AlphaClick()
+        public void AlphaClick()
         {
             Debug.Log("AlphaClick");
             ObjPool.GetComponent<ObjectPool>().OnDequeue();
