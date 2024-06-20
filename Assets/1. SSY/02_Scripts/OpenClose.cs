@@ -28,7 +28,14 @@ public class OpenClose : MonoBehaviour
     [SerializeField] private bool  isPos;
 
     private bool isOpen;
-  
+
+    public bool isSolution = false;
+
+    public void SetLock(bool _lock)
+    {
+        isSolution = _lock;
+        Debug.Log("lOCK 풀림");
+    }
 
 
     [SerializeField] private float elapsedTime = 0.0f;
@@ -85,7 +92,9 @@ public class OpenClose : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
+        if(isSolution)
+        {
+
             if (!isOpen)
             {
                 //this.transform.GetComponent<Collider>().enabled = false;  
@@ -122,6 +131,13 @@ public class OpenClose : MonoBehaviour
                 isRot = true;
 
             }
+        }
+        else
+        {
+            //잠긴 사운드 
+
+        }
+           
       
        
 

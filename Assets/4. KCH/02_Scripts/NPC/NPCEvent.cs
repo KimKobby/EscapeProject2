@@ -1,70 +1,60 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class NPCEvent : MonoBehaviour
+namespace NPC
 {
-    [SerializeField]
-    private GameObject combinationUI;
-    [SerializeField]
-    private GameObject guideUI;
-    //[SerializeField]
-    //private InputActionAsset actionAsset;
-    [SerializeField]
-    private Collider[] touchPoint;
-
-    private int touchCount;
-
-    private Animator NPC_Animation;
-
-    private void Start()
+    public class NPCEvent : MonoBehaviour
     {
-        NPC_Animation = this.GetComponent<Animator>();
-    }
+        [SerializeField] private GameObject combinationUI;
+        [SerializeField] private GameObject guideUI;
+        [SerializeField] private GameObject countGuideUI;
+        [SerializeField] private TMP_Text countGuideText;
+        [SerializeField] private Collider[] touchPoint;
+        public static int touchCount;
+        private Animator NPC_Animation;
 
-/*    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("트리거" + other.gameObject.name);
-        Debug.Log(touchCount);
-        if (other.CompareTag("InteractiveObject"))
+        private void Start()
         {
-            touchCount++;
+            NPC_Animation = this.GetComponent<Animator>();
         }
-    }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("충돌" + collision.gameObject.name);
-        Debug.Log(touchCount);
-        if (collision.collider.CompareTag("InteractiveObject"))
+
+        private void Update()
         {
-            touchCount++;
-        }
-    }*/
+            if (touchCount > 0)
+            {
+                countGuideUI.gameObject.SetActive(true);
+                countGuideText.text = 10 - NPCEvent.touchCount + "번을 더 두들기세요.";
 
-    private void Update()
-    {
-        if (touchCount > 5)
+                if (touchCount == 10)
+                {
+                    WakeUpNPC();
+                    touchCount = 0;
+                    countGuideUI.gameObject.SetActive(false);
+                }
+            }
+            
+        }
+
+        private void WakeUpNPC()
         {
-            WakeUpNPC();
+            //var rightControllerVal_a = actionAsset.actionMaps[8].actions[2].ReadValue<bool>();
+            for (int i = 0; i < touchPoint.Length; i++)
+            {
+                touchPoint[i].gameObject.SetActive(false);
+            }
+            NPC_Animation.SetTrigger("WakeUpNPC");
+            combinationUI.SetActive(true);
         }
-    }
 
-    private void WakeUpNPC()
-    {
-        //var rightControllerVal_a = actionAsset.actionMaps[8].actions[2].ReadValue<bool>();
-        for (int i = 0; i < touchPoint.Length; i++)
+        public void SleepNPC()
         {
-            touchPoint[i].gameObject.SetActive(false);
+            NPC_Animation.SetTrigger("SleepNPC");
+            combinationUI.SetActive(false);
         }
-        NPC_Animation.SetTrigger("WakeUpNPC");
-        combinationUI.SetActive(true);
-    }
-
-    public void SleepNPC()
-    {
-        NPC_Animation.SetTrigger("SleepNPC");
-        combinationUI.SetActive(false);
     }
 }
