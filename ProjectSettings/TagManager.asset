@@ -21,7 +21,7 @@ TagManager:
   - UI
   - None Nav
   - NPC
-  - 
+  - HiddenText
   - 
   - Weapon
   - Only Hand Interaction
@@ -33,7 +33,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - KEY1
   - 
   - 
   - 
