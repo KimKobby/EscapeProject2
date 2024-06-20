@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Park
-{
+
     public class WallMove : MonoBehaviour
     {
         private Vector3 startPos;
@@ -12,7 +11,7 @@ namespace Park
 
         public float WallSpeed;
 
-        public Detect _detect; //DtectScriptのオブジェクト
+        public Detect2 _detect; //DtectScriptのオブジェクト
 
         private float times;//10000フレームつかって移動することにする
         // Start is called before the first frame update
@@ -43,4 +42,3 @@ namespace Park
             }
         }
     }
-}
