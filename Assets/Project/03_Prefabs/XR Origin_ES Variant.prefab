@@ -929,10 +929,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionAsset: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
+  cameraOffset: {fileID: 0}
   leftRayController: {fileID: 7428467667869653573}
   rightRayController: {fileID: 1227035681454892024}
   leftDirectController: {fileID: 659619005643000944}
   rightDeirectController: {fileID: 5926566356318825927}
+  controlleroffset: {fileID: 0}
   b_RightControllerRay: 0
   clockinnerobj: {fileID: 5503095591492956428}
   headinnerobj: {fileID: 1010079808224430873}

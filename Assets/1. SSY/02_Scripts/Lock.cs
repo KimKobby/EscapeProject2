@@ -14,16 +14,20 @@ namespace Song
         public int wordCount;
         private Paper paper;
 
-
+        public GameObject door;
         [SerializeField] private bool b_LockBtn;
         private string[] answers = new string[4];
 
         public string test;
 
         public Animator animator;
+        public AnimationClip animClip;
 
         public bool b_Open;
+        public bool isNumLock;
 
+        private bool b_numlock = true;
+        private float timeNumLock = 0f;
 
 
         public void ClickLockBtn()
@@ -34,47 +38,112 @@ namespace Song
 
         private void Awake()
         {
-            paper = GameObject.FindObjectOfType<Paper>();
+            if(!isNumLock)
+            {
+                paper = GameObject.FindObjectOfType<Paper>();
+            }
 
+          
+          
         }
 
+        private void Start()
+        {
+          // this.transform.rotation = Quaternion.identity;
+
+      
+        }
 
         private void Update()
         {
             //  Debug.Log("answer = " + paper.GetWord());
 
-
-            //버튼 클릭했을때
-            if (b_LockBtn)
+            if (isNumLock)
+                Debug.Log(answers[0] + answers[1] + answers[2] + answers[3]);
+            if (!isNumLock)
             {
-
-                string s = "";
-
-
-                for (int i = 0; i < 4; ++i)
+                //버튼 클릭했을때
+                if (b_LockBtn)
                 {
-                    s += answers[i];
+
+                    string s = "";
+
+
+                    for (int i = 0; i < 4; ++i)
+                    {
+                        s += answers[i];
+                    }
+
+                    Debug.Log("S : " + s);
+
+                    if (s == paper.GetWord())
+                    {
+                        b_Open = true;
+                    }
+
+                    //풀렸을 때
+                    if (b_Open)
+                    {
+
+                        animator.SetTrigger("IsOpen");
+                        b_Open = false;
+                        b_LockBtn = false;
+                    }
+                    else
+                    {
+                        b_LockBtn = false;
+                        s = "";
+
+                    }
+
                 }
 
-                Debug.Log("S : " + s);
-
-                if (s == paper.GetWord())
+            }
+            else
+            {
+                if(b_numlock)
                 {
-                    b_Open = true;
-                }
+                    string s = "";
 
-                //풀렸을 때
-                if (b_Open)
-                {
 
-                    animator.SetTrigger("IsOpen");
-                    b_Open = false;
-                    b_LockBtn = false;
-                }
-                else
-                {
-                    b_LockBtn = false;
-                    s = "";
+                    for (int i = 0; i < 4; ++i)
+                    {
+                        s += answers[i];
+                    }
+
+
+                    if (s == "2107")
+                    {
+                        timeNumLock += Time.deltaTime;
+
+                        if(timeNumLock >= 1)
+                        {
+                            b_Open = true;
+
+                        }
+
+                    }
+                    else
+                    {
+                        timeNumLock = 0f;
+                    }
+
+                    //풀렸을 때
+                    if (b_Open)
+                    {
+
+                        animator.SetTrigger("IsOpen");
+                       
+                        b_Open = false;
+                        b_LockBtn = false;
+                        b_numlock = false;
+                    }
+                    else
+                    {
+                        b_LockBtn = false;
+                        s = "";
+
+                    }
 
                 }
 
@@ -111,6 +180,11 @@ namespace Song
 
         }
 
+        public void EndAnimEvent()
+        {
+            door.GetComponent<OpenClose>().SetLock(true);
+            this.gameObject.SetActive(false);
+        }
 
 
 
