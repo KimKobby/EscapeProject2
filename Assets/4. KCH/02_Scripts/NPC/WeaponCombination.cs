@@ -81,9 +81,19 @@ namespace NPC
         private void OnCombiantionSocket()
         {
             
-            combiantionSocket.SetActive(isCombiantion);  // 조합 된 소켓 켜기
-
+            combiantionSocket.SetActive(isCombiantion);  // 조합 된 무기 넣을 소켓 켜기
             combiantionSocket.GetComponent<XRSocketInteractor>().interactionLayers = InteractionLayerMask.GetMask("Weapon");
+            CloseIngredientSocket();  // 조합 된 소켓 칸들 끄기
+        }
+
+        // 조함 된 소켓 칸들 클로즈 기능
+        private void CloseIngredientSocket()
+        {
+            for (int i = 0; i < ingredientSocket.transform.childCount; i++)
+            {
+                ingredientSocket.transform.GetChild(0).gameObject.SetActive(false);
+            }
+            ingredientSocket.SetActive(!isCombiantion);  // 조합 할 소켓들 끄기
         }
 
 
@@ -91,7 +101,7 @@ namespace NPC
         private void CreateCombinationWeapon(int _combinationDamage)
         {
             // 첫번째로 들어온 무기를 메인으로 인스턴스
-            GameObject combinationWeapon = Instantiate(combinationBox[0], combiantionSocket.transform.position, Quaternion.identity);
+            GameObject combinationWeapon = Instantiate(combinationBox[Random.Range(0, combinationBox.Count)], combiantionSocket.transform.position, Quaternion.identity);
 
             AddEmission(combinationWeapon);
 
@@ -103,7 +113,7 @@ namespace NPC
                 for (int i = 0; i < objsBox.Count; i++)
                 {
                     objsBox[i].SetActive(false);
-                    ingredientSocket.SetActive(!isCombiantion);  // 조합 할 소켓들 끄기
+                    
                 }
                 objsBox.Clear();
                 
@@ -120,18 +130,18 @@ namespace NPC
         private void AddEmission(GameObject _combinationWeapon)
         {
             // RIgidbody 값 설정
-            _combinationWeapon.transform.GetChild(0).GetChild(0).GetComponent<Rigidbody>().angularDrag = 0.05f;
-            _combinationWeapon.transform.GetChild(0).GetChild(0).GetComponent<Rigidbody>().useGravity = true;
-            _combinationWeapon.transform.GetChild(0).GetChild(0).GetComponent<Rigidbody>().isKinematic = false;
+            _combinationWeapon.transform.GetComponent<Rigidbody>().angularDrag = 0.05f;
+            _combinationWeapon.transform.GetComponent<Rigidbody>().useGravity = true;
+            _combinationWeapon.transform.GetComponent<Rigidbody>().isKinematic = false;
 
             // 대상의 머티리얼 가져옴
             Material newMat = _combinationWeapon.transform.GetChild(0).GetChild(0).GetComponent<MeshRenderer>().material;
 
             // 머티리얼 변경
             newMat.EnableKeyword("_EMISSION");
-            newMat.SetTexture("_EmissionMap", newMat.GetTexture("_BaseMap"));
-            newMat.SetColor("_EmissionColor", new Color(190f, 8f, 0f));
-            newMat.SetFloat("_EmissionIntensity", 5.5f);
+            //newMat.SetTexture("_EmissionMap", newMat.GetTexture("_BaseMap"));
+            //newMat.SetColor("_EmissionColor", new Color(190f, 80f, 50f));
+            //newMat.SetFloat("_EmissionIntensity", 1f);
 
             // 변경된 머티리얼 적용
             _combinationWeapon.transform.GetChild(0).GetChild(0).GetComponent<MeshRenderer>().material = newMat;

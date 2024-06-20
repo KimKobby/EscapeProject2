@@ -26,9 +26,11 @@ public class AutoSizing : MonoBehaviour
 
         // 소켓에 들어간 오브젝트를 스케일 1로 계산 하기 위한 값
         restoreScale = 1/holdObjectScale;
+     
 
         // 소켓에 맞게 계산
-        Vector3 newScale = Vector3.one * restoreScale * socketCollider.size.x * scaleMultiplier;
+        Vector3 newScale = (Vector3.one * socketCollider.size.x * scaleMultiplier) * restoreScale;
+        Debug.Log(newScale);
 
         holdObject.transform.localScale = newScale;
     }
