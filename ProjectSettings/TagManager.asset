@@ -11,6 +11,7 @@ TagManager:
   - Enemy
   - Hand
   - Btn
+  - Well
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - UI
   - None Nav
   - NPC
-  - 
+  - HiddenText
   - 
   - Weapon
   - None Interaction Weapon
@@ -32,7 +33,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - KEY1
   - 
   - 
   - 
