@@ -4,20 +4,18 @@ using UnityEngine;
 
 public class DoorEvent : MonoBehaviour
 {
-    public Animator doorAnim;
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            doorAnim.SetTrigger("IsOpen");
-        }
-    }
+    public delegate void DoorOpenedEventHandler();
+    public event DoorOpenedEventHandler OnDoorOpened;
 
-    public void OnTriggerExit(Collider other)
+    private bool isOpen = false;
+
+    public void OpenDoor()
     {
-       if (other.CompareTag("Player"))
+        if (!isOpen)
         {
-            doorAnim.SetTrigger("IsClose");
+            isOpen = true;
+            Debug.Log("Door opened" + gameObject.name);
+            OnDoorOpened?.Invoke();
         }
     }
 }
