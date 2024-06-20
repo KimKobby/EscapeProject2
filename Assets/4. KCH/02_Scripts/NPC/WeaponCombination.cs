@@ -14,29 +14,33 @@ namespace NPC
     public class WeaponCombination : MonoBehaviour
     {
         private bool isCombiantion = false;
-        private List<GameObject> combinationBox = new List<GameObject>(); // 조합 박스 
+        private List<GameObject> combinationBox = new List<GameObject>(); // 조합 박스 리스트
         private List<GameObject> objsBox = new List<GameObject>(); // 조합 박스 대체용
 
-        [SerializeField]
-        private GameObject ingredientSocket;
-        [SerializeField]
-        private GameObject combiantionSocket;
+        [SerializeField] private GameObject ingredientSocket;  // 조합 칸 소켓모음
+        [SerializeField] private GameObject combiantionSocket;  // 조합 된 소켓
 
 
 
         // 조합 소켓 아이템 리스트에 추가
         public void WeaponAddList(SelectEnterEventArgs args)
         {
-            combinationBox.Add(args.interactableObject.transform.gameObject);
-            //Debug.Log(args.interactableObject + "_ADD");
+            if (isCombiantion == false)
+            {
+                combinationBox.Add(args.interactableObject.transform.gameObject);
+                //Debug.Log(args.interactableObject + "_ADD");
+            }
         }
 
 
         // 조합 소켓 아이템 리스트에 제거
         public void WeaponRemoveList(SelectExitEventArgs args)
         {
-            combinationBox.Remove(args.interactableObject.transform.gameObject);
-            //Debug.Log(args.interactableObject + "_Remove");
+            if (isCombiantion == false)
+            {
+                combinationBox.Remove(args.interactableObject.transform.gameObject);
+                //Debug.Log(args.interactableObject + "_Remove");
+            }
         }
 
 
@@ -76,7 +80,9 @@ namespace NPC
         // 조합 완성 소켓 칸 오픈 기능
         private void OnCombiantionSocket()
         {
-            combiantionSocket.SetActive(isCombiantion);
+            
+            combiantionSocket.SetActive(isCombiantion);  // 조합 된 소켓 켜기
+
             combiantionSocket.GetComponent<XRSocketInteractor>().interactionLayers = InteractionLayerMask.GetMask("Weapon");
         }
 
@@ -91,21 +97,23 @@ namespace NPC
 
             if (combinationWeapon != null)
             {
-                combinationWeapon.GetComponent<Weapon>().stunDamage = _combinationDamage;  // 조합무기의 stunDamage 값을 combinationDamage로 설정
+                combinationWeapon.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Weapon>().stunDamage = _combinationDamage;  // 조합무기의 stunDamage 값을 combinationDamage로 설정
 
                 // 조합 진행 된 무기 제거
                 for (int i = 0; i < objsBox.Count; i++)
                 {
                     objsBox[i].SetActive(false);
+                    ingredientSocket.SetActive(!isCombiantion);  // 조합 할 소켓들 끄기
                 }
                 objsBox.Clear();
+                
             }
             else
             {
                 Debug.Log("조합 된 무기가 만들어지지 않았습니다.");
             }
 
-            ingredientSocket.SetActive(!isCombiantion);
+            
         }
 
         // 새 조합 무기에 발광 추가
