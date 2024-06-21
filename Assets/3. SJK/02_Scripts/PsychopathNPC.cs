@@ -9,7 +9,7 @@ public class PsychopathNPC : MonoBehaviour
     public float detectionDistance = 3f; // NPC가 캐릭터를 추적할 최대 거리
     public float detectionAngle = 90f;   // NPC가 캐릭터를 추적할 시야 각도
     private float randomMoveRadius = 10f; // NPC가 초기에 설정할 랜덤 이동 반경
-    private float changeRadiusInterval = 2f; // 반경 변경 간격
+    private float changeRadiusInterval = 1.5f; // 반경 변경 간격
 
     private NavMeshAgent agent;
     private GameObject player;

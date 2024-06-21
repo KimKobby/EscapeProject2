@@ -7,7 +7,7 @@ namespace NavKeypad
     public class Password : MonoBehaviour
     {
         public GameObject[] numberObjects; // 0-9 숫자를 표시할 GameObject 배열
-        public GameObject potionObject; // 충돌을 감지할 포션 오브젝트
+        public GameObject[] potionObjects; // 충돌을 감지할 포션 오브젝트
         public AudioClip collisionSound; // 충돌 소리
         private AudioSource audioSource; // 오디오 소스
         private List<int> password; // 생성된 암호를 저장할 리스트
@@ -50,19 +50,23 @@ namespace NavKeypad
         // 포션 충돌 감지 메서드
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject == potionObject)
+            foreach ( var potionObject in potionObjects)
             {
-                // 포션 오브젝트 비활성화
-                potionObject.SetActive(false);
 
-                // 충돌 소리 재생
-                if (collisionSound != null)
+                if (other.gameObject == potionObject)
                 {
-                    AudioSource.PlayClipAtPoint(collisionSound, transform.position);
-                }
+                    // 포션 오브젝트 비활성화
+                    potionObject.SetActive(false);
 
-                // 암호 표시 코루틴 시작
-                StartCoroutine(DisplayPassword());
+                    // 충돌 소리 재생
+                    if (collisionSound != null)
+                    {
+                        AudioSource.PlayClipAtPoint(collisionSound, transform.position);
+                    }
+
+                    // 암호 표시 코루틴 시작
+                    StartCoroutine(DisplayPassword());
+                }
             }
         }
 
