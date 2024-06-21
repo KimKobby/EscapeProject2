@@ -22,7 +22,7 @@ public class KeyGimmick3 : MonoBehaviour
             //otherの中でKeyという名前を持ったGameobjectがコライダーに衝突した場合、
         {
             Debug.Log("open");
-            door.GetComponent<Transform>().rotation = Quaternion.Euler(0f, 114.449f, 0f);
+            door.GetComponent<Transform>().rotation = Quaternion.Euler(0f, -120f, 0f);
         }
         Debug.Log(other.gameObject.name);
     }
