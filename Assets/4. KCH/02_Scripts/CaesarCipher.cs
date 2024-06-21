@@ -110,7 +110,7 @@ namespace Changhoon
                 }
                 password += computeNumber[i].ToString();
             }
-            Debug.Log(password);
+            Debug.Log("시저암호 정답" + password);
         }
 
         private void CreateCaesarCipher() // 시저 암호 랜덤 숫자 조합 함수
@@ -131,7 +131,7 @@ namespace Changhoon
             // 최종 암호 표시 조합
             textCaesarCipher += "\n" + direction + "으로 " + directionWELenght + "걸음..";
             hintText.text = textCaesarCipher;
-            Debug.Log(textCaesarCipher);
+            //Debug.Log(textCaesarCipher);
 
             // 진짜 암호 변환
             ConvertPassword();

@@ -24,9 +24,12 @@ namespace Changhoon
         private string startStr = "P A S S  W O R D";
         private string wrongStr = "W A R N I G";
 
+        [SerializeField] private GameObject doorLock;
+
         void Start()
         {
             padText.text = startStr;
+            doorLock.GetComponent<OpenClose>().isSolution = false;
         }
 
         private void OnInputNumber(string str)
@@ -78,6 +81,9 @@ namespace Changhoon
             ConvertTextToNumber();
             if (convertPassword == Changhoon.CaesarCipher.Instance.password)
             {
+                padText.text = "O P E N";
+                StartCoroutine(OpenDoorDelay());
+                doorLock.GetComponent<OpenClose>().isSolution = true;
                 Debug.Log("¿ÀÇÂ");
             }
             else
@@ -86,6 +92,12 @@ namespace Changhoon
                 inputText = "";
                 padText.text = wrongStr;
             }
+        }
+
+        IEnumerator OpenDoorDelay()
+        {
+            yield return new WaitForSeconds(1f); // 1ÃÊ ´ë±â ÈÄ ²¨Áü
+            this.gameObject.SetActive(false);
         }
 
 
