@@ -49,12 +49,14 @@ namespace NPC
             }
             NPC_Animation.SetTrigger("WakeUpNPC");
             combinationUI.SetActive(true);
+            guideUI.SetActive(true);
         }
 
         public void SleepNPC()
         {
             NPC_Animation.SetTrigger("SleepNPC");
             combinationUI.SetActive(false);
+            guideUI.SetActive(false);
         }
     }
 }
