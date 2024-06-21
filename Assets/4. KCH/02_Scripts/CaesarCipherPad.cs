@@ -21,8 +21,8 @@ namespace Changhoon
         [SerializeField]private TMP_Text padText;
         private string inputText;
 
-        private string startStr = "암호를 입력해주세요";
-        private string wrongStr = "암호가 틀렸습니다";
+        private string startStr = "P A S S  W O R D";
+        private string wrongStr = "W A R N I G";
 
         void Start()
         {
@@ -90,16 +90,16 @@ namespace Changhoon
 
 
 
-        private void Update()
-        {
-            if (Input.GetMouseButtonDown(2))
-            {
+        //private void Update()
+        //{
+        //    if (Input.GetMouseButtonDown(2))
+        //    {
 
-                CheckPassword();
+        //        CheckPassword();
 
 
-            }
-        }
+        //    }
+        //}
     }
 }
 
