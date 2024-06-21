@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,7 +30,7 @@ public class OpenClose1 : MonoBehaviour
 
     private bool firstTimeOpened = false;
 
-    public PsychoPathNPC psychoPathNPC;
+    public psychopathNavMesh navMeshController; 
 
     [SerializeField] private float elapsedTime = 0.0f;
     private float durationTime = 1f;
@@ -64,6 +64,10 @@ public class OpenClose1 : MonoBehaviour
                     {
                         firstTimeOpened = true;
                         psychoPathNPC.OnFirstDoorOpened();
+                        if (navMeshController != null)
+                        {
+                            navMeshController.OnFirstDoorOpened();  // 첫 번째 문 열림 알림
+                        }
                     }
                 }
             }
@@ -89,19 +93,35 @@ public class OpenClose1 : MonoBehaviour
         {
             if (other.CompareTag("Hand"))
             {
-                Debug.Log("Player 충돌");
+                Debug.Log("Player 접촉");
                 isRot = true;
             }
         }
         else
         {
-            // 잠긴 사운드
+            // 잠긴 상태 처리
         }
     }
 
     public void SetLock(bool _lock)
     {
         isSolution = _lock;
-        Debug.Log("LOCK 풀림");
+        Debug.Log("LOCK 해제");
+    }
+
+    public void NotifyDoorOpened()
+    {
+        if (navMeshController != null)
+        {
+            if (!firstTimeOpened)
+            {
+                navMeshController.OnFirstDoorOpened();
+            }
+            else
+            {
+                navMeshController.OnSecondDoorOpened();
+            }
+        }
     }
 }
+*/
