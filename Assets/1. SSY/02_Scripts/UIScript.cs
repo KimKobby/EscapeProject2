@@ -7,6 +7,8 @@ namespace Song
 {
     public class UIScript : MonoBehaviour
     {
+        public AudioClip[] audioclips;
+
         public Button start_Btn;
         public Button setting_Btn;
         //public Button startReset_Btn;
@@ -18,6 +20,7 @@ namespace Song
 
         public GameObject startBox;
         public GameObject settingBox;
+        public GameObject volumeUI;
 
 
         public GameObject ObjPool;
@@ -30,7 +33,7 @@ namespace Song
            // startReset_Btn.onClick.AddListener(Reset);
             alpha_Btn.onClick.AddListener(AlphaClick);
             mainCanvas.SetActive(false);
-
+            volumeUI.transform.GetChild(2).GetComponent<Slider>().onValueChanged.AddListener(VolumeSound);
         }
 
         // Update is called once per frame
@@ -39,16 +42,21 @@ namespace Song
 
         }
 
+ 
+
         public void StartClick()
         {
             startBox.GetComponent<SocketCheck>().OnClickStartBtn();
-            Debug.Log("StartClick");
+           // Debug.Log("StartClick");
             if (startBox.GetComponent<SocketCheck>().GetStartCheck())
             {
-                Debug.Log("StartCheck");
+                AudioManager.Inst.UIBtnClickSound(true);
+                //Debug.Log("StartCheck");
                 SceneManager.LoadScene(1);
-               
-
+            }
+            else
+            {
+                AudioManager.Inst.UIBtnClickSound(false);
             }
         }
 
@@ -60,8 +68,12 @@ namespace Song
             if (settingBox.GetComponent<SocketCheck>().GetSettingCheck())
             {
                 //Debug.Log("StartCheck");
-
+                AudioManager.Inst.UIBtnClickSound(true);
                 mainCanvas.SetActive(!mainvisible);
+            }
+            else
+            {
+                AudioManager.Inst.UIBtnClickSound(false);
             }
 
 
@@ -74,13 +86,16 @@ namespace Song
 
         public void AlphaClick()
         {
-            Debug.Log("AlphaClick");
+            AudioManager.Inst.UIBtnClickSound(true);
             ObjPool.GetComponent<ObjectPool>().OnDequeue();
-
 
         }
 
-
+        public void VolumeSound(float _value)
+        {
+            //Debug.Log(_value);
+             AudioManager.Inst.SetMusicVolume(_value);
+        }
     }
 
 }
