@@ -74,7 +74,7 @@ namespace Changhoon
         private void Direction()  // 방향 랜덤 생성 함수
         {
             string[] directionWE = { "동쪽", "서쪽" }; // 동,서 쪽 방향
-            int directionWEMaxLenght = 9; // 동,서 이동 최대 이동거리
+            int directionWEMaxLenght = 6; // 동,서 이동 최대 이동거리
             int randomIndex = Random.Range(0, directionWE.Length);  // 랜덤으로 동쪽인지 서쪽인지 뽑기
             direction = directionWE[randomIndex];
             directionWELenght = Random.Range(1, directionWEMaxLenght + 1);  // 랜덤 방향으로 몇 이동할지 랜덤 뽑기
@@ -131,7 +131,7 @@ namespace Changhoon
             // 최종 암호 표시 조합
             textCaesarCipher += "\n" + direction + "으로 " + directionWELenght + "걸음..";
             hintText.text = textCaesarCipher;
-            //Debug.Log(textCaesarCipher);
+            Debug.Log(textCaesarCipher);
 
             // 진짜 암호 변환
             ConvertPassword();
