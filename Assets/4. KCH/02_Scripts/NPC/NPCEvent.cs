@@ -29,7 +29,7 @@ namespace NPC
             if (touchCount > 0)
             {
                 countGuideUI.gameObject.SetActive(true);
-                countGuideText.text = 10 - NPCEvent.touchCount + "번을 더 두들기세요.";
+                countGuideText.text = 10 - NPCEvent.touchCount + "번을 더 \n 두들기세요.";
 
                 if (touchCount == 10)
                 {
