@@ -211,7 +211,12 @@ namespace Song
 
         }
 
-      
+        public void PlayerAnimEnd()
+        {
+            this.gameObject.GetComponent<Animator>().enabled = false;  
+        }
+
+
     }
 
    
