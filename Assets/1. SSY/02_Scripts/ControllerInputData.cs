@@ -142,6 +142,7 @@ namespace Song
             if(leftControllerVal_y == 1f)
             {
                 Inventory.gameObject.SetActive(true);
+                
             }
             else
             {
@@ -210,7 +211,12 @@ namespace Song
 
         }
 
-      
+        public void PlayerAnimEnd()
+        {
+            this.gameObject.GetComponent<Animator>().enabled = false;  
+        }
+
+
     }
 
    

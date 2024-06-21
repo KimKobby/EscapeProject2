@@ -45,14 +45,21 @@ namespace Song
             {
                 int randomFloorIdx = UnityEngine.Random.Range(1, 3);
                 int randomRoomIdx = UnityEngine.Random.Range(1, 4);
-                string roomKey = randomFloorIdx.ToString() + "," + randomRoomIdx.ToString();
+                
+
+                ////3층전용
+                //string roomKey = randomFloorIdx.ToString() + "," + randomRoomIdx.ToString();
+
+                //지하층 전용
+                string roomKey =  randomRoomIdx.ToString();
 
                 // 중복된 층과 호수인 경우 다시 무작위로 선택
                 while (usedRooms.Contains(roomKey))
                 {
-                    randomFloorIdx = UnityEngine.Random.Range(1, 3);
+                    //randomFloorIdx = UnityEngine.Random.Range(1, 3);
                     randomRoomIdx = UnityEngine.Random.Range(1, 4);
-                    roomKey = randomFloorIdx.ToString() + "," + randomRoomIdx.ToString();
+                   // roomKey = randomFloorIdx.ToString() + "," + randomRoomIdx.ToString();
+                    roomKey =  randomRoomIdx.ToString();
                 }
 
                 // 사용된 층과 호수로 표시하고 HashSet에 추가

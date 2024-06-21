@@ -12,6 +12,7 @@ TagManager:
   - Hand
   - Btn
   - Well
+  - Item
   layers:
   - Default
   - TransparentFX

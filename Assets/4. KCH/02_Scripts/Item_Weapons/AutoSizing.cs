@@ -11,9 +11,12 @@ public class AutoSizing : MonoBehaviour
     private float restoreScale;  // 스케일 1로 계산 하기 위한 값
     private float scaleMultiplier = 0.8f; // 오브젝트 크기 조절 비율
 
+
     private void Start()
     {
         socketCollider = this.GetComponent<BoxCollider>();
+        this.GetComponent<CustomInventorySocketInteractor>().selectEntered.AddListener(ReSizing);
+       // this.GetComponent<CustomInventorySocketInteractor>().selectExited.AddListener(restoreSizing);
     }
 
     public void ReSizing(SelectEnterEventArgs args)
@@ -43,7 +46,8 @@ public class AutoSizing : MonoBehaviour
 
     public void restoreSizing(SelectExitEventArgs args)
     {
-        holdObject.transform.localScale = new Vector3(1, 1, 1);
+
+       // holdObject.transform.localScale = new Vector3(1, 1, 1);
     }
 
 
