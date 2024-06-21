@@ -12,6 +12,7 @@ TagManager:
   - Hand
   - Btn
   - Well
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - None Nav
   - NPC
   - HiddenText
-  - 
+  - Player
   - Weapon
   - Only Hand Interaction
   - 

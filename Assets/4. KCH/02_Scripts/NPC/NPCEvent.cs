@@ -11,6 +11,7 @@ namespace NPC
     {
         [SerializeField] private GameObject combinationUI;
         [SerializeField] private GameObject guideUI;
+        [SerializeField] private GameObject previousUI;
         [SerializeField] private GameObject countGuideUI;
         [SerializeField] private TMP_Text countGuideText;
         [SerializeField] private Collider[] touchPoint;
@@ -42,6 +43,7 @@ namespace NPC
 
         private void WakeUpNPC()
         {
+            previousUI.SetActive(false );
             //var rightControllerVal_a = actionAsset.actionMaps[8].actions[2].ReadValue<bool>();
             for (int i = 0; i < touchPoint.Length; i++)
             {
