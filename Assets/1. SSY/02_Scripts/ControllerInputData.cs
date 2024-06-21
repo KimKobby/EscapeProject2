@@ -142,6 +142,7 @@ namespace Song
             if(leftControllerVal_y == 1f)
             {
                 Inventory.gameObject.SetActive(true);
+                
             }
             else
             {
