@@ -32,7 +32,7 @@ public class Detect2 : MonoBehaviour
 
         // ドアを回転させる
         Quaternion initialRotation = door.transform.rotation;
-        Quaternion targetRotation = Quaternion.Euler(0f, -90f, 0f); // 目標の回転
+        Quaternion targetRotation = Quaternion.Euler(0f, 90f, 0f); // 目標の回転
 
         float elapsed = 0f;
 
