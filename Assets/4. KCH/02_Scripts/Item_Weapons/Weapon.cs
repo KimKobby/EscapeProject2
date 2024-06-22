@@ -1,6 +1,8 @@
+using NPC;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 namespace Weapons
 {
@@ -8,55 +10,70 @@ namespace Weapons
     public class Weapon : MonoBehaviour
     {
         public int stunDamage;  // 무기 스턴 데미지
-        private bool isAttack = false;  // 공격중인지 확인
+        public bool isGrab = false;  // 플레이어가 잡았는지 확인
+        private XRGrabInteractable grabInteractable;
 
-        public NPC.EnemyStunTime enemy;  // 적 스크립트
+        public GameObject enemy;
 
+
+
+        private void Start()
+        {
+            XRGrabInteractable grabInteractable = this.GetComponent<XRGrabInteractable>();
+        }
+
+        public void OnGrab()
+        {
+
+            
+            isGrab = true;
+            Debug.Log(this.gameObject.name + "을 잡았습니다. 상태는" + isGrab);
+        }
+
+        [System.Obsolete]
+        public void Throw()
+        {
+
+            Debug.Log(this.gameObject.name + "을 놓았습니다. 상태는" + isGrab);
+            StartCoroutine(IsGrabReset());
+        }
+
+        private IEnumerator IsGrabReset()  // 잡은 상태 끄기
+        {
+            yield return new WaitForSeconds(3f); //  3초후 잡은 상태 끔
+            isGrab = false;
+            Debug.Log(this.gameObject.name + "무기의 상태는" + isGrab);
+        }
+
+
+        //public void OnCollisionEnter(Collision collision)  // 충돌시
+        //{
+        //    if (isGrab && collision.gameObject.GetComponent<EnemyStunTime>() != null)
+        //    {
+        //        enemy.GetComponent<EnemyStunTime>().stunTime += stunDamage; // 적 스턴타임에 스턴 데미지만큼 추가
+        //        this.gameObject.SetActive(false);  // 무기 파괴
+        //        isGrab = false;
+        //    }
+        //    else
+        //    {
+        //        Debug.Log("맞은 대상이 싸이코가 아닙니다.");
+        //    }
+        //}
+/*
         public void Swing(int dmg) // 공격(휘두르기) 기능
         {
             dmg = stunDamage;  // 스턴 데미지
-            isAttack = true;
+            isGrab = true;
             //StartCoroutine(IsAttackReset());
         }
 
         public void Throw(int dmg) // 공격(던지기) 기능
         {
             dmg = stunDamage;  // 스턴 데미지
-            isAttack = true;
+            isGrab = true;
         }
-
-
-        private IEnumerator IsAttackReset()  // 공격중인 상태 끄기
-        {
-            yield return new WaitForSeconds(1f);
-            isAttack = false;
-        }
-
-
-        public void OnCollisionEnter(Collision collision)  // 충돌시
-        {
-            if (isAttack && collision.gameObject.CompareTag("Enemy") && collision.gameObject.layer == LayerMask.NameToLayer("NPC"))  // 공격중 && 적태그 && NPC레이어일 경우
-            {
-                enemy.stunTime += stunDamage; // 적 스턴타임에 스턴 데미지만큼 추가
-                this.gameObject.SetActive(false);  // 무기 파괴
-                isAttack = false;
-            }
-            else
-            {
-                isAttack = false ;
-            }
-        }
-
-        /*
-                public void OnTriggerEnter(Collider other)  // 충돌시
-                {
-                    if (other.gameObject.CompareTag("Enemy") && other.gameObject.layer == LayerMask.NameToLayer("NPC"))
-                    {
-                        enemy.stunTime += stunDamage; // 적 스턴타임에 스턴 데미지만큼 추가
-                        this.gameObject.SetActive(false);  // 무기파괴
-                    }
-                }
-        */
+*/
+      
     }
 
 }
