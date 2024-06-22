@@ -30,6 +30,14 @@ namespace Song
         public void SelectSomething(SelectEnterEventArgs args)
         {
 
+            //아이템 선택 시 기존 크기로 스케일값 변경
+            if (args.interactableObject.transform.gameObject.CompareTag("Item"))
+            {
+                Debug.Log(args.interactableObject.transform.GetChild(0).GetChild(0));
+                args.interactableObject.transform.GetChild(0).GetChild(0).transform.localScale = new Vector3(1, 1, 1);
+            }
+
+
             Debug.Log("SELECT");
             //자물쇠 돌릴때
             if (args.interactableObject.transform.CompareTag("Well"))
