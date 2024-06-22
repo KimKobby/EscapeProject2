@@ -44,9 +44,9 @@ GameObject:
   - component: {fileID: 4550983818107045297}
   - component: {fileID: 5953310384336797311}
   - component: {fileID: 1261398154626525129}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Crowbar
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

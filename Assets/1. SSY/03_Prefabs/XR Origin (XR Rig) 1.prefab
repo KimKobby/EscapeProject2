@@ -2239,7 +2239,6 @@ GameObject:
   - component: {fileID: 8602061747890982388}
   - component: {fileID: 3767133416684129168}
   - component: {fileID: 5775904294056525446}
-  - component: {fileID: 9220261535334325734}
   - component: {fileID: 8964143440927611315}
   - component: {fileID: 8113194456867343174}
   - component: {fileID: 4565405813304704255}
@@ -2426,27 +2425,6 @@ MonoBehaviour:
   clockCanvas: {fileID: 5123195726252393679}
   Inventory: {fileID: 6446608252488955461}
   isClicked: 0
---- !u!135 &9220261535334325734
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4295518353139460137}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 0.12
-  m_Center: {x: 0, y: -0.77, z: 0}
 --- !u!136 &8964143440927611315
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2466,10 +2444,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.1
-  m_Height: 1.07
+  m_Radius: 0.13
+  m_Height: 0.98
   m_Direction: 1
-  m_Center: {x: 0, y: 0.05, z: 0}
+  m_Center: {x: 0, y: 0.1, z: 0}
 --- !u!54 &8113194456867343174
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2479,8 +2457,8 @@ Rigidbody:
   m_GameObject: {fileID: 4295518353139460137}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0.5
-  m_AngularDrag: 0.5
+  m_Drag: Infinity
+  m_AngularDrag: Infinity
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -2495,7 +2473,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!95 &4565405813304704255
 Animator:
@@ -3499,6 +3477,7 @@ GameObject:
   - component: {fileID: 4777408740268062189}
   - component: {fileID: 6636608772868296981}
   - component: {fileID: 6951782940961393023}
+  - component: {fileID: 8738186237292188826}
   m_Layer: 9
   m_Name: Right Controller (1)
   m_TagString: Hand
@@ -3790,11 +3769,17 @@ MonoBehaviour:
   m_StartingTargetFilter: {fileID: 0}
   m_HoverEntered:
     m_PersistentCalls:
+      m_Calls: []
+  m_HoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectEntered:
+    m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Lock, Assembly-CSharp
-        m_MethodName: ClickLockBtn
-        m_Mode: 1
+      - m_Target: {fileID: 8738186237292188826}
+        m_TargetAssemblyTypeName: DirectGrabItem, Assembly-CSharp
+        m_MethodName: ReturnItemSize
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3803,12 +3788,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_HoverExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_SelectEntered:
-    m_PersistentCalls:
-      m_Calls: []
   m_SelectExited:
     m_PersistentCalls:
       m_Calls: []
@@ -3898,6 +3877,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 766630f13089c2e46b759eac38939a26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8738186237292188826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5064403285487064735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5373f2aa0ecd1ee43ae1f0a3a11aafc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5215343908674604656
