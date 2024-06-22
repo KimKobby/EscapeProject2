@@ -9,6 +9,7 @@ public class CustomInventorySocketInteractor : XRSocketInteractor
     void Start()
     {
         this.selectEntered.AddListener(InventorySocketInItem);
+        this.selectExited.AddListener(InventorySocketExitItem);
     }
 
     // Update is called once per frame
@@ -24,6 +25,17 @@ public class CustomInventorySocketInteractor : XRSocketInteractor
         args.interactableObject.transform.SetParent(this.gameObject.transform.parent.parent.parent, true);
 
     }
+
+    void InventorySocketExitItem(SelectExitEventArgs args)
+    {
+        Debug.Log(args.interactableObject);
+
+        //if(args.interactor.gameObject.name)
+        //{ }
+        //args.interactableObject.transform.SetParent(this.gameObject.transform.parent.parent.parent, true);
+
+    }
+
 
 
 

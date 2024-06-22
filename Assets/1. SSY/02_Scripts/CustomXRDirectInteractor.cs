@@ -13,9 +13,11 @@ public class CustomXRDirectInteractor : XRBaseControllerInteractor
 
     void Resize(SelectEnterEventArgs args)
     {
+
+        Debug.Log(args.interactableObject.transform.GetChild(0).GetChild(0));
         if(args.interactorObject.transform.gameObject.CompareTag("Item"))
         {
-            args.interactableObject.transform.localScale = new Vector3(1, 1, 1);
+            args.interactableObject.transform.GetChild(0).GetChild(0).transform.localScale = new Vector3(1, 1, 1);
         }
     }
 }
