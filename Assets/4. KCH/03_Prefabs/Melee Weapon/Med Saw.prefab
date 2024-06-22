@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 7905868293824751518}
   - component: {fileID: -4812733249425339442}
   - component: {fileID: 1362500196899451425}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Med Saw
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

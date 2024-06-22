@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class AudioManager : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class AudioManager : MonoBehaviour
 
     public AudioClip backgroundMusic;
     public AudioClip[] soundEffects;
+
+    public GameObject player;
+    int playerwalkcount;
+
 
     private void Awake()
     {
@@ -28,6 +33,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
+        playerwalkcount = 2;
         PlayMusic(backgroundMusic);
     }
 
@@ -66,5 +72,37 @@ public class AudioManager : MonoBehaviour
 
         uiAS.Play();
     }
+
+    public IEnumerator PlayerWalk(bool _iswalk, float _num)
+    {
+       while(_iswalk)
+        {
+
+            if(!_iswalk)
+            {
+                playerAS.Stop();
+                yield break;
+            }
+       
+
+            playerAS.clip = soundEffects[playerwalkcount];
+            playerAS.Play();
+
+
+            if (playerwalkcount == 5)
+            {
+                playerwalkcount = 2;
+            }
+            playerwalkcount++;
+            yield return new WaitForSeconds(_num);
+        }
+          
+    }
+
+    public void PlayerIdle()
+    {
+        playerAS.Stop();
+    }
+    
 
 }

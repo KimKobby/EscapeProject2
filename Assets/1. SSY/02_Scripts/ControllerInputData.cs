@@ -1,6 +1,8 @@
 
+using System.Collections.Generic;
 using Unity.Mathematics;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -44,6 +46,7 @@ namespace Song
 
         public bool isClicked = false;
         private bool xButtonClick = false;
+        private bool isWalking = false;
 
 
         public float getStickVal()
@@ -70,7 +73,7 @@ namespace Song
             TriggerClick();
             InventoryOn();
             PlayerMoveSpeed();
-
+            PlayerMoveCheck();
         }
 
 
@@ -216,6 +219,41 @@ namespace Song
             this.gameObject.GetComponent<Animator>().enabled = false;  
         }
 
+
+        public void PlayerMoveCheck()
+        {
+            //Player가 움직이고 있을 경우
+            if(actionAsset.actionMaps[3].actions[5].ReadValue<Vector2>().x != 0 ||
+                actionAsset.actionMaps[3].actions[5].ReadValue<Vector2>().y != 0)
+            {
+               
+                if(!isWalking)
+                {
+                    //달리면서 움직이는경우
+                    if (actionAsset.actionMaps[2].actions[0].ReadValue<float>() == 1)
+                    {
+                        isWalking = true;
+                        StartCoroutine(AudioManager.Inst.PlayerWalk(true, 0.3f));
+                    }
+                    //걸으면서 움직이는 경우
+                    else
+                    {
+                        isWalking = true;
+                        StartCoroutine(AudioManager.Inst.PlayerWalk(true, 0.5f));
+                    }
+                }
+              
+            
+            }
+            else
+            {
+                isWalking = false;
+                AudioManager.Inst.PlayerIdle();
+
+            }
+            //움직임이 없는경우
+
+        }
 
     }
 

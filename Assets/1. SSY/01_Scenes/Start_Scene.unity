@@ -451,6 +451,11 @@ MonoBehaviour:
   soundEffects:
   - {fileID: 8300000, guid: f1c0dc80a866b654bb368d34f42b5c15, type: 3}
   - {fileID: 8300000, guid: c0eca9d332e2ef44d8cf635ecbbfa756, type: 3}
+  - {fileID: 8300000, guid: 77c4d7af8fa83df418e1067fd4c55c58, type: 3}
+  - {fileID: 8300000, guid: c6f2bbea16c01da4a84cfe2e828c9ad4, type: 3}
+  - {fileID: 8300000, guid: 64013f1050ae0294d9d7ebcf4c55cfe6, type: 3}
+  - {fileID: 8300000, guid: 16f4fed5fa4500d4bbe887d564f9105f, type: 3}
+  player: {fileID: 1303911998}
 --- !u!4 &907544
 Transform:
   m_ObjectHideFlags: 0
@@ -5710,6 +5715,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d9a9e38485b63e4b829fe17342ab509, type: 3}
+--- !u!1 &1303911998 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4295518353139460137, guid: 5d9a9e38485b63e4b829fe17342ab509,
+    type: 3}
+  m_PrefabInstance: {fileID: 1303911997}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1327233199
 PrefabInstance:
   m_ObjectHideFlags: 0

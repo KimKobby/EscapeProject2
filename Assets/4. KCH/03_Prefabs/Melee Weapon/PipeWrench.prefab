@@ -44,9 +44,9 @@ GameObject:
   - component: {fileID: 3265781874997420366}
   - component: {fileID: 927592580559799919}
   - component: {fileID: -3934169816101606612}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PipeWrench
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
