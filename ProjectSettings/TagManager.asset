@@ -13,6 +13,7 @@ TagManager:
   - Btn
   - Well
   - Item
+  - HandleKey
   layers:
   - Default
   - TransparentFX
