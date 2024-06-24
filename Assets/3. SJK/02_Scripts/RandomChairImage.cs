@@ -6,9 +6,7 @@ using System.Collections;
 public class RandomChairImage : MonoBehaviour
 {
     public GameObject[] chairs; // 의자 객체의 배열
-    public Canvas canvasToShow; // 표시할 캔버스
-    public Transform hmdTransform; // HMD의 트랜스폼
-    public Vector3 canvasOffset = new Vector3(0, 0, 1); // HMD로부터의 오프셋
+    public Image imageToShow; // 표시할 이미지
     private GameObject selectedChair; // 선택된 의자
 
     void Start()
@@ -27,28 +25,18 @@ public class RandomChairImage : MonoBehaviour
 
     void OnChairGrabbed(XRBaseInteractor interactor)
     {
-        StartCoroutine(ShowCanvas());
+        StartCoroutine(ShowImage());
     }
 
-    IEnumerator ShowCanvas()
+    IEnumerator ShowImage()
     {
-        // 캔버스를 HMD 앞에 배치
-        PositionCanvasInFrontOfHMD();
-
-        // 캔버스를 표시
-        canvasToShow.gameObject.SetActive(true);
+        // 이미지를 표시
+        imageToShow.gameObject.SetActive(true);
 
         // 2초 대기
         yield return new WaitForSeconds(2);
 
-        // 캔버스를 숨김
-        canvasToShow.gameObject.SetActive(false);
-    }
-
-    private void PositionCanvasInFrontOfHMD()
-    {
-        // HMD 앞에 캔버스 위치 설정
-        canvasToShow.transform.position = hmdTransform.position + hmdTransform.forward * canvasOffset.z + hmdTransform.up * canvasOffset.y + hmdTransform.right * canvasOffset.x;
-        canvasToShow.transform.rotation = Quaternion.LookRotation(canvasToShow.transform.position - hmdTransform.position);
+        // 이미지를 숨김
+        imageToShow.gameObject.SetActive(false);
     }
 }

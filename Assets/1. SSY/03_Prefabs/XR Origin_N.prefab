@@ -1855,10 +1855,8 @@ GameObject:
   - component: {fileID: 3561943256593055785}
   - component: {fileID: 6898425883714375253}
   - component: {fileID: 8144912676491058796}
-  - component: {fileID: 5106944322863937829}
   - component: {fileID: 8748829018547557596}
   - component: {fileID: 2403555091054032897}
-  - component: {fileID: 4698854907730517418}
   - component: {fileID: 7126776726110044801}
   m_Layer: 0
   m_Name: XR Origin_N
@@ -2042,29 +2040,6 @@ MonoBehaviour:
   clockCanvas: {fileID: 6123523471204259590}
   Inventory: {fileID: 2018675412554123771}
   isClicked: 0
---- !u!136 &5106944322863937829
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1977425449067457706}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.13
-  m_Height: 0.98
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.1, z: 0}
 --- !u!54 &8748829018547557596
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2100,7 +2075,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1977425449067457706}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: dcc7ea0a76ee12c49af08e9b078ab321, type: 2}
   m_CullingMode: 0
@@ -2113,14 +2088,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!81 &4698854907730517418
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1977425449067457706}
-  m_Enabled: 1
 --- !u!65 &7126776726110044801
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2140,8 +2107,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.21069734, y: 1.2658005, z: 0.2086248}
-  m_Center: {x: 0.017227039, y: -0.047724247, z: -0.037379622}
+  m_Size: {x: 0.21069734, y: 1.1403255, z: 0.2086248}
+  m_Center: {x: 0.017227039, y: 0.015013218, z: -0.037379622}
 --- !u!1 &2018675412554123771
 GameObject:
   m_ObjectHideFlags: 0

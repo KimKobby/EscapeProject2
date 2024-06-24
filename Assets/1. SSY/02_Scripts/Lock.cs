@@ -59,7 +59,7 @@ namespace Song
             //  Debug.Log("answer = " + paper.GetWord());
 
             if (isNumLock)
-                Debug.Log(answers[0] + answers[1] + answers[2] + answers[3]);
+                //Debug.Log(answers[0] + answers[1] + answers[2] + answers[3]);
             if (!isNumLock)
             {
                 //버튼 클릭했을때
@@ -74,7 +74,7 @@ namespace Song
                         s += answers[i];
                     }
 
-                    Debug.Log("S : " + s);
+                   // Debug.Log("S : " + s);
 
                     if (s == paper.GetWord())
                     {
