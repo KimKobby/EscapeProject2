@@ -15,8 +15,11 @@ public class KeyGimmick3 : MonoBehaviour
 
     // Update is called once per frame
    
-    private void OnTriggerExit(Collider other) // 문 큐브 코라이더에 다른 오브젝트의 코라이더가 충돌하면 이하의 처리를 행한다.
+    private void OnTriggerEnter(Collider other) // 문 큐브 코라이더에 다른 오브젝트의 코라이더가 충돌하면 이하의 처리를 행한다.
     {
+       // Debug.Log(other.name);
+       // Debug.Log(other.GetComponent<HandleKeyGimmick2>().KeyCombineflag);
+
         Debug.Log("hanno" + other.gameObject.name + Key.GetComponent<HandleKeyGimmick2>().KeyCombineflag);
         if (other.gameObject.name == "Key" && Key.GetComponent<HandleKeyGimmick2>().KeyCombineflag == true)
             //otherの中でKeyという名前を持ったGameobjectがコライダーに衝突した場合、

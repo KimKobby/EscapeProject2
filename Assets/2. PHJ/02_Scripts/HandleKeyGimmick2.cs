@@ -10,7 +10,8 @@ public class HandleKeyGimmick2 : MonoBehaviour
 {
     public GameObject doorKey;
     public bool KeyCombineflag;
-  
+    public Mesh mesh;
+
 
    
     void Start()
@@ -28,12 +29,12 @@ public class HandleKeyGimmick2 : MonoBehaviour
         {
             GameObject targetKey = collision.gameObject;
             targetKey.SetActive(false);
-            this.gameObject.GetComponent<MeshRenderer>().enabled = false;
-            this.gameObject.GetComponent<BoxCollider>().enabled = false;
-            GameObject realDoorKey = Instantiate(doorKey, this.transform.position, Quaternion.identity);
-            doorKey.transform.SetParent(this.transform);
-            doorKey.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
-            
+            Debug.Log(doorKey.GetComponent<MeshFilter>());
+            this.gameObject.GetComponent<MeshFilter>().mesh = mesh;
+            this.gameObject.name = "Key";
+            //doorKey.transform.SetParent(this.transform);
+            //doorKey.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+
             KeyCombineflag = true;
             Debug.Log("keyyyyyy");
 
