@@ -49,6 +49,14 @@ namespace Song
         private bool isWalking = false;
         private Coroutine walkcorutine;
 
+        private bool aButtonClick = false;
+
+        //A버튼값 
+        public bool getAButton()
+        {
+            return aButtonClick;
+        }
+
 
         public float getStickVal()
         {
@@ -72,6 +80,7 @@ namespace Song
             Inventory.gameObject.SetActive(false);
             clockCanvas.transform.gameObject.SetActive(false);
             actionAsset.actionMaps[8].actions[0].canceled += PlayerSitandStand;
+            actionAsset.actionMaps[8].actions[2].canceled += PlayerRightHand;
         }
 
         void Update()
@@ -268,7 +277,17 @@ namespace Song
 
         }
 
+        
+        void PlayerRightHand(InputAction.CallbackContext action)
+        {
+            //A버튼 눌렀을떄
+            aButtonClick = !aButtonClick;
+        }
+
+
     }
 
+
+    
    
 }
