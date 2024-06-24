@@ -113,10 +113,34 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1362500196899451425}
+        m_TargetAssemblyTypeName: Weapons.Weapon, Assembly-CSharp
+        m_MethodName: OnGrab
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1362500196899451425}
+        m_TargetAssemblyTypeName: Weapons.Weapon, Assembly-CSharp
+        m_MethodName: Throw
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_FirstFocusEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -224,11 +248,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3287349643548731612}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e3f3b72ada84514984af155f195bd13, type: 3}
+  m_Script: {fileID: 11500000, guid: eaefa7d5e1f1e48409a69cba837a1ad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stunDamage: 1
-  enemy: {fileID: 0}
+  stunDamage: 4
+  isGrab: 0
+  enemy: {fileID: 4499297205208594286, guid: 02d338b0995173f46bd68a3348f1dac5, type: 3}
 --- !u!1 &4199779814926560928
 GameObject:
   m_ObjectHideFlags: 0
