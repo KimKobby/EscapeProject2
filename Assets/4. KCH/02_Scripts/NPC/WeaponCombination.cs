@@ -43,6 +43,11 @@ namespace NPC
             }
         }
 
+        public void OffCombinationUI()
+        {
+            GameObject gameObject = this.gameObject;
+            gameObject.SetActive(false);
+        }
 
         // 무기 조합 기능
         public void Combination()
@@ -140,6 +145,7 @@ namespace NPC
             }
             objsBox.Clear();
         }
+
 
     }
 }

@@ -63,7 +63,6 @@ namespace NPC
         public void SleepNPC()
         {
             NPC_Animation.SetTrigger("SleepNPC");
-            combinationUI.SetActive(false);
             guideUI.SetActive(false);
         }
     }

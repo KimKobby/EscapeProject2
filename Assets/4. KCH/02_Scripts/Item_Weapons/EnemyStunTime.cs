@@ -14,8 +14,16 @@ namespace NPC
         private bool isStun = false;
         public Animator enemy_Animation;
 
-        public void OnTriggerEnter(Collider other)  
+        CapsuleCollider boxCollider;
+
+        private void Start()
         {
+            boxCollider = this.gameObject.GetComponent<CapsuleCollider>();
+        }
+
+        public void OnTriggerEnter(Collider other)
+        {
+
             Weapon weapon = other.transform.root.GetComponent<Weapon>();
             //Debug.Log(other.gameObject.name + "트리거가 감지되었습니다.");
             if (weapon != null && weapon.isGrab)
@@ -24,7 +32,7 @@ namespace NPC
                 stunTime = weapon.stunDamage; // 적 스턴타임에 스턴 데미지만큼 추가
                 enemy_Animation.SetTrigger("Hit");
                 StartCoroutine("SetIsStun");
-                Debug.Log("스턴 타임" +  stunTime);
+                Debug.Log("스턴 타임" + stunTime);
                 weapon.gameObject.SetActive(false);  // 무기파괴
             }
             else
@@ -43,6 +51,7 @@ namespace NPC
         {
             if (stunTime > 0)
             {
+                boxCollider.enabled = false;
                 isStun = true;
                 stunTimeUI.SetActive(isStun);
                 stunTime -= Time.deltaTime;
@@ -51,6 +60,7 @@ namespace NPC
             }
             else if (stunTime <= 0)
             {
+                boxCollider.enabled = true;
                 isStun = false;
                 enemy_Animation.SetBool("isStun", false);
                 stunTimeUI.SetActive(isStun);
