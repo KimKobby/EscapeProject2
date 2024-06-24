@@ -47,6 +47,15 @@ namespace Song
         public bool isClicked = false;
         private bool xButtonClick = false;
         private bool isWalking = false;
+        private Coroutine walkcorutine;
+
+        private bool aButtonClick = false;
+
+        //A버튼값 
+        public bool getAButton()
+        {
+            return aButtonClick;
+        }
 
 
         public float getStickVal()
@@ -58,12 +67,20 @@ namespace Song
         {
             return inRaySelectVal;
         }
+
+        //private void Awake()
+        //{
+        //    Application.targetFrameRate = 60;
+
+        //}
+
         void Start()
         {
           //  this.transform.position = new Vector3(this.transform.position.x, 0.5f, this.transform.position.z);
             Inventory.gameObject.SetActive(false);
             clockCanvas.transform.gameObject.SetActive(false);
             actionAsset.actionMaps[8].actions[0].canceled += PlayerSitandStand;
+            actionAsset.actionMaps[8].actions[2].canceled += PlayerRightHand;
         }
 
         void Update()
@@ -222,40 +239,55 @@ namespace Song
 
         public void PlayerMoveCheck()
         {
+            //Left Controller Select Value (달리기)
+            float runInputval = actionAsset.actionMaps[2].actions[0].ReadValue<float>();
+
             //Player가 움직이고 있을 경우
-            if(actionAsset.actionMaps[3].actions[5].ReadValue<Vector2>().x != 0 ||
+            if (actionAsset.actionMaps[3].actions[5].ReadValue<Vector2>().x != 0 ||
                 actionAsset.actionMaps[3].actions[5].ReadValue<Vector2>().y != 0)
             {
                
                 if(!isWalking)
                 {
-                    //달리면서 움직이는경우
-                    if (actionAsset.actionMaps[2].actions[0].ReadValue<float>() == 1)
-                    {
-                        isWalking = true;
-                        StartCoroutine(AudioManager.Inst.PlayerWalk(true, 0.3f));
-                    }
-                    //걸으면서 움직이는 경우
-                    else
-                    {
-                        isWalking = true;
-                        StartCoroutine(AudioManager.Inst.PlayerWalk(true, 0.5f));
-                    }
+
+                    isWalking = true;
+                    //달리기 값 = 0.3초마다, 뛰기 값는 0.5초마다
+                    float walkdelay = (runInputval == 1) ? 0.3f : 0.5f;
+                    walkcorutine = StartCoroutine(AudioManager.Inst.PlayerWalk(true, walkdelay));
+                 
                 }
               
             
             }
             else
             {
-                isWalking = false;
-                AudioManager.Inst.PlayerIdle();
+                if(isWalking)
+                {
+                    isWalking = false;
+                    if (walkcorutine != null)
+                    {
+                        StopCoroutine(walkcorutine);
+                    }
+                    AudioManager.Inst.WalkStop();
+
+                }
 
             }
-            //움직임이 없는경우
+           
 
         }
 
+        
+        void PlayerRightHand(InputAction.CallbackContext action)
+        {
+            //A버튼 눌렀을떄
+            aButtonClick = !aButtonClick;
+        }
+
+
     }
 
+
+    
    
 }

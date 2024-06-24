@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 namespace Shim
 {
@@ -18,9 +19,10 @@ namespace Shim
             return fuseInserted;
         }
 
-        private void OnTriggerEnter(Collider other)
+
+        public void OnlightEnter(SelectEnterEventArgs args)
         {
-            if (other.CompareTag("Fuse"))
+            if (args.interactableObject.transform.gameObject.CompareTag("Fuse"))
             {
                 // 퓨즈 아이템이 소켓에 삽입되었을 때
                 fuseInserted = true;
@@ -41,21 +43,74 @@ namespace Shim
             }
         }
 
-        private void OnTriggerExit(Collider other)
+        public void OnlightExit(SelectExitEventArgs args)
         {
-            if (other.CompareTag("Fuse"))
+            if (args.interactableObject.transform.gameObject.CompareTag("Fuse"))
             {
-                // 퓨즈 아이템이 소켓에서 제거되었을 때
+                // 퓨즈 아이템이 소켓에 삽입되었을 때
                 fuseInserted = false;
-                Debug.Log("퓨즈가 제거되었습니다.");
+                Debug.Log("퓨즈가 연결되었습니다.");
 
-                // 특정 소켓에 퓨즈가 제거되었을 때 라이트 머티리얼 변경
+                // 특정 소켓에 퓨즈가 삽입되었을 때 라이트 머티리얼 변경
                 ChangeLightMaterial(redMaterial);
+                Debug.Log("Material이 red으로 변경됩니다.");
 
-                // 퓨즈 제거 소리 재생
-                //PlaySound(removeSound);
+                // 퓨즈 삽입 소리 재생
+                //PlaySound(insertSound);
+
+                // 모든 퓨즈가 연결되었는지 확인
+                //if (AreAllFusesConnected())
+                //{
+                //    PlaySound(allFusesConnectedSound);
+                //}
             }
         }
+
+
+
+
+
+        /*
+                private void OnTriggerEnter(Collider other)
+                {
+                    if (other.CompareTag("Fuse"))
+                    {
+                        // 퓨즈 아이템이 소켓에 삽입되었을 때
+                        fuseInserted = true;
+                        Debug.Log("퓨즈가 연결되었습니다.");
+
+                        // 특정 소켓에 퓨즈가 삽입되었을 때 라이트 머티리얼 변경
+                        ChangeLightMaterial(greenMaterial);
+                        Debug.Log("Material이 green으로 변경됩니다.");
+
+                        // 퓨즈 삽입 소리 재생
+                        //PlaySound(insertSound);
+
+                        // 모든 퓨즈가 연결되었는지 확인
+                        //if (AreAllFusesConnected())
+                        //{
+                        //    PlaySound(allFusesConnectedSound);
+                        //}
+                    }
+                }
+
+                private void OnTriggerExit(Collider other)
+                {
+                    if (other.CompareTag("Fuse"))
+                    {
+                        // 퓨즈 아이템이 소켓에서 제거되었을 때
+                        fuseInserted = false;
+                        Debug.Log("퓨즈가 제거되었습니다.");
+
+                        // 특정 소켓에 퓨즈가 제거되었을 때 라이트 머티리얼 변경
+                        ChangeLightMaterial(redMaterial);
+
+                        // 퓨즈 제거 소리 재생
+                        //PlaySound(removeSound);
+                    }
+                }
+        */
+
 
         private void ChangeLightMaterial(Material material)
         {
@@ -79,18 +134,18 @@ namespace Shim
         //    }
         //}
 
-        //private bool AreAllFusesConnected()
-        //{
-        //    // 모든 FuseSocket 오브젝트를 찾고 모든 소켓에 퓨즈가 연결되었는지 확인
-        //    FuseSocket[] allFuseSockets = FindObjectsOfType<FuseSocket>();
-        //    foreach (FuseSocket socket in allFuseSockets)
-        //    {
-        //        if (!socket.IsFuseConnected())
-        //        {
-        //            return false;
-        //        }
-        //    }
-        //    return true;
-        //}
+        private bool AreAllFusesConnected()
+        {
+            // 모든 FuseSocket 오브젝트를 찾고 모든 소켓에 퓨즈가 연결되었는지 확인
+            FuseSocket[] allFuseSockets = FindObjectsOfType<FuseSocket>();
+            foreach (FuseSocket socket in allFuseSockets)
+            {
+                if (!socket.IsFuseConnected())
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }

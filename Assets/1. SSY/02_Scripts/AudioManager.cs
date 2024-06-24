@@ -75,31 +75,23 @@ public class AudioManager : MonoBehaviour
 
     public IEnumerator PlayerWalk(bool _iswalk, float _num)
     {
-       while(_iswalk)
+        while (true)
         {
-
-            if(!_iswalk)
-            {
-                playerAS.Stop();
-                yield break;
-            }
-       
-
             playerAS.clip = soundEffects[playerwalkcount];
             playerAS.Play();
 
-
-            if (playerwalkcount == 5)
+            playerwalkcount++;
+            if (playerwalkcount > 5)
             {
                 playerwalkcount = 2;
             }
-            playerwalkcount++;
+
             yield return new WaitForSeconds(_num);
         }
-          
+
     }
 
-    public void PlayerIdle()
+    public void WalkStop()
     {
         playerAS.Stop();
     }
