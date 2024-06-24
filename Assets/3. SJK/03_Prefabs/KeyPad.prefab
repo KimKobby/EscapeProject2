@@ -245,7 +245,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3686140639244970302}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: NavKeypad.VRKeypad, Assembly-CSharp
         m_MethodName: PressNumber
         m_Mode: 5
@@ -378,7 +378,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3686140639244970302}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: NavKeypad.VRKeypad, Assembly-CSharp
         m_MethodName: PressNumber
         m_Mode: 5
@@ -780,7 +780,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3686140639244970302}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: NavKeypad.VRKeypad, Assembly-CSharp
         m_MethodName: CheckPassword
         m_Mode: 1
@@ -988,7 +988,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3686140639244970302}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: NavKeypad.VRKeypad, Assembly-CSharp
         m_MethodName: PressNumber
         m_Mode: 5
@@ -1121,7 +1121,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3686140639244970302}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: NavKeypad.VRKeypad, Assembly-CSharp
         m_MethodName: PressNumber
         m_Mode: 5
@@ -1254,7 +1254,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3686140639244970302}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: NavKeypad.VRKeypad, Assembly-CSharp
         m_MethodName: PressNumber
         m_Mode: 5
@@ -1521,7 +1521,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3686140639244970302}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: NavKeypad.VRKeypad, Assembly-CSharp
         m_MethodName: PressNumber
         m_Mode: 5
@@ -1788,7 +1788,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3686140639244970302}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: NavKeypad.VRKeypad, Assembly-CSharp
         m_MethodName: PressNumber
         m_Mode: 5
@@ -1921,7 +1921,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3686140639244970302}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: NavKeypad.VRKeypad, Assembly-CSharp
         m_MethodName: PressNumber
         m_Mode: 5
@@ -2076,7 +2076,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5845194751368236356}
-  - component: {fileID: 3686140639244970302}
   m_Layer: 0
   m_Name: KeyPad
   m_TagString: Untagged
@@ -2100,22 +2099,6 @@ Transform:
   - {fileID: 8259050686515840931}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3686140639244970302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5334774657496786940}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ddcdf4821f2d8a4982a1532bd6b0093, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputText: {fileID: 4656838250482398294}
-  canvasUI: {fileID: 109075751803784328}
-  lockedDoor: {fileID: 0}
-  passwordScript: {fileID: 0}
 --- !u!1 &5775618513138894191
 GameObject:
   m_ObjectHideFlags: 0
@@ -2371,7 +2354,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3686140639244970302}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: NavKeypad.VRKeypad, Assembly-CSharp
         m_MethodName: PressNumber
         m_Mode: 5
@@ -2843,7 +2826,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3686140639244970302}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: NavKeypad.VRKeypad, Assembly-CSharp
         m_MethodName: PressNumber
         m_Mode: 5
