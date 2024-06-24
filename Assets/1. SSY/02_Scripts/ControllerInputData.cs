@@ -240,7 +240,7 @@ namespace Song
         public void PlayerMoveCheck()
         {
             //Left Controller Select Value (달리기)
-            float runInputval = actionAsset.actionMaps[2].actions[0].ReadValue<float>();
+            // float runInputval = actionAsset.actionMaps[2].actions[0].ReadValue<float>();
 
             //Player가 움직이고 있을 경우
             if (actionAsset.actionMaps[3].actions[5].ReadValue<Vector2>().x != 0 ||
@@ -252,7 +252,7 @@ namespace Song
 
                     isWalking = true;
                     //달리기 값 = 0.3초마다, 뛰기 값는 0.5초마다
-                    float walkdelay = (runInputval == 1) ? 0.3f : 0.5f;
+                    float walkdelay = (actionAsset.actionMaps[2].actions[0].ReadValue<float>() == 1) ? 0.3f : 0.5f;
                     walkcorutine = StartCoroutine(AudioManager.Inst.PlayerWalk(true, walkdelay));
                  
                 }
