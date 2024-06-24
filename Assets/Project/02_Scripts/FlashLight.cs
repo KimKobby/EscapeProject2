@@ -15,7 +15,7 @@ public class FlashLight : MonoBehaviour
 
     private void Awake()
     {
-        lightObj = this.gameObject.transform.GetChild(0).gameObject;  // 플래시 라이트 자식 첫번째 오브젝트가 라이트오브젝트이어야함
+        lightObj = this.gameObject.transform.GetChild(0).GetChild(0).GetChild(0).gameObject;  // 플래시 라이트 자식 첫번째 오브젝트가 라이트오브젝트이어야함
     }
 
     private void Update()
@@ -27,11 +27,12 @@ public class FlashLight : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.CompareTag("Hand"))
+        Debug.Log("태그");
+        if (other.gameObject.CompareTag("Hand"))
         {
             if (player.GetComponent<ControllerInputData>().getAButton())
             {
-               // Debug.Log("불");
+                Debug.Log("불");
                 isOn = !isOn;
                 lightObj.SetActive(true);
             }
