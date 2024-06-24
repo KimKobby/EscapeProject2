@@ -70,7 +70,7 @@ namespace NavKeypad
             if (currentInput == passwordScript.GetPassword())
             {
                 Debug.Log("암호가 일치합니다!");
-                resultText.text = "정답입니다!"; // 정답 메시지 표시
+                resultText.text = "OPEN"; // 정답 메시지 표시
 
                 // 정답 효과음 재생 후 문 열기
                 StartCoroutine(PlayCorrectSoundAndOpenDoor());
@@ -78,7 +78,7 @@ namespace NavKeypad
             else
             {
                 Debug.Log("암호가 일치하지 않습니다.");
-                resultText.text = "비밀번호가 틀렸습니다."; // 틀린 비밀번호 메시지 표시
+                resultText.text = "WARNING"; // 틀린 비밀번호 메시지 표시
 
                 // 오답 효과음 재생
                 PlaySound(incorrectSound);
