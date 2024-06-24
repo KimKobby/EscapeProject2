@@ -8,7 +8,7 @@ namespace Song
     public class Paper : MonoBehaviour
     {
         private TMP_Text[] tmp_txts = new TMP_Text[4];
-        
+
         private string[] words = { "FACE", "ADDB", "CABE", "DEBA", "ABEF" };
         public TMP_Text[] hidden_txts = new TMP_Text[4];
 
@@ -16,13 +16,13 @@ namespace Song
 
         public string GetWord()
         {
-          return words[wordidx];
+            return words[wordidx];
         }
-        
+
 
         void Awake()
         {
-    
+
         }
 
         // Start is called before the first frame update
@@ -32,7 +32,7 @@ namespace Song
 
             SetHiddenNum();
 
-            
+
         }
 
         private void SetPaperNum()
@@ -43,23 +43,23 @@ namespace Song
 
             for (int i = 0; i < 4; ++i)
             {
-                int randomFloorIdx = UnityEngine.Random.Range(1, 3);
+                //int randomFloorIdx = UnityEngine.Random.Range(1, 3);
                 int randomRoomIdx = UnityEngine.Random.Range(1, 4);
-                
+
 
                 ////3층전용
                 //string roomKey = randomFloorIdx.ToString() + "," + randomRoomIdx.ToString();
 
                 //지하층 전용
-                string roomKey =  randomRoomIdx.ToString();
+                string roomKey = randomRoomIdx.ToString();
 
                 // 중복된 층과 호수인 경우 다시 무작위로 선택
                 while (usedRooms.Contains(roomKey))
                 {
                     //randomFloorIdx = UnityEngine.Random.Range(1, 3);
-                    randomRoomIdx = UnityEngine.Random.Range(1, 4);
-                   // roomKey = randomFloorIdx.ToString() + "," + randomRoomIdx.ToString();
-                    roomKey =  randomRoomIdx.ToString();
+                    randomRoomIdx = UnityEngine.Random.Range(1, 5);
+                    // roomKey = randomFloorIdx.ToString() + "," + randomRoomIdx.ToString();
+                    roomKey = randomRoomIdx.ToString();
                 }
 
                 // 사용된 층과 호수로 표시하고 HashSet에 추가
@@ -71,13 +71,13 @@ namespace Song
 
         private void SetHiddenNum()
         {
-          
+
             wordidx = UnityEngine.Random.Range(0, 5);
 
-            for (int i = 0;i < 4; ++i)
+            for (int i = 0; i < 4; ++i)
             {
                 hidden_txts[i].text = words[wordidx][i].ToString();
-                    
+
             }
 
 
