@@ -1,6 +1,7 @@
 using NPC;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -11,7 +12,8 @@ namespace Weapons
     {
         public int stunDamage;  // 무기 스턴 데미지
         public bool isGrab = false;  // 플레이어가 잡았는지 확인
-        private XRGrabInteractable grabInteractable;
+        public bool isAttack = false;
+       // private XRGrabInteractable grabInteractable;
 
         public GameObject enemy;
 
@@ -19,30 +21,33 @@ namespace Weapons
 
         private void Start()
         {
-            XRGrabInteractable grabInteractable = this.GetComponent<XRGrabInteractable>();
+            //XRGrabInteractable grabInteractable = this.GetComponent<XRGrabInteractable>();
         }
 
         public void OnGrab()
         {
 
-            
+            StopCoroutine("IsGrabReset");
             isGrab = true;
             Debug.Log(this.gameObject.name + "을 잡았습니다. 상태는" + isGrab);
         }
 
-        [System.Obsolete]
+        
         public void Throw()
         {
-
-            Debug.Log(this.gameObject.name + "을 놓았습니다. 상태는" + isGrab);
-            StartCoroutine(IsGrabReset());
+            isGrab  = false;    
+            //Debug.Log(this.gameObject.name + "을 놓았습니다. 상태는" + isGrab);
+            StartCoroutine("IsGrabReset");
         }
 
         private IEnumerator IsGrabReset()  // 잡은 상태 끄기
         {
-            yield return new WaitForSeconds(3f); //  3초후 잡은 상태 끔
-            isGrab = false;
-            Debug.Log(this.gameObject.name + "무기의 상태는" + isGrab);
+
+            yield return new WaitForSeconds(2f); //  2초후 잡은 상태 끔
+            isAttack = false;
+            Debug.Log(this.gameObject.name + "놓은 후 무기의 상태는" + isGrab);
+
+
         }
 
 

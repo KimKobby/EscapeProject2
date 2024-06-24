@@ -283,7 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaefa7d5e1f1e48409a69cba837a1ad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stunDamage: 2
+  stunDamage: 5
   isGrab: 0
   enemy: {fileID: 4499297205208594286, guid: 02d338b0995173f46bd68a3348f1dac5, type: 3}
 --- !u!1001 &5598327092598910790

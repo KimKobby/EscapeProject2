@@ -3,45 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.SceneManagement;
-namespace Intro
+
+namespace Video
 {
     public class StartIntroVideo : MonoBehaviour
     {
         [SerializeField]
-        private VideoPlayer introVideo;
+        private VideoPlayer video;
         private bool isVideo = false;
+        public int nextSceneNumber;
 
         public void OnVideo()
         {
             isVideo = true;
-            introVideo.Play();
-            introVideo.loopPointReached += HideVideo;
+            video.Play();
+            video.loopPointReached += HideVideo;
         }
 
         private void HideVideo(VideoPlayer videoPlayer)
         {
-            SceneManager.LoadScene(2);
-            videoPlayer = introVideo;
-            //introVideo.gameObject.SetActive(false);
-
+            SceneManager.LoadScene(nextSceneNumber);
+            videoPlayer = video;
         }
 
 
         private void Start()
         {
-            introVideo = this.GetComponent<VideoPlayer>();
+            video = this.GetComponent<VideoPlayer>();
             if (!isVideo)
             {
                 OnVideo();
             }
         }
-
-        //private void Update()
-        //{
-        //    if (!isVideo && Input.GetMouseButtonDown(1))
-        //    {
-        //        OnVideo();
-        //    }
-        //}
     }
 }

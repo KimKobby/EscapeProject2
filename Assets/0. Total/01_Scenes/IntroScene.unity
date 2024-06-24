@@ -1901,10 +1901,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1527542151}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5347036823929d4a80b72287c74ff8e, type: 3}
+  m_Script: {fileID: 11500000, guid: af05469a1cb8ef042a65992498682f77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  introVideo: {fileID: 0}
+  video: {fileID: 0}
+  nextSceneNumber: 2
 --- !u!1 &1586183622
 GameObject:
   m_ObjectHideFlags: 0

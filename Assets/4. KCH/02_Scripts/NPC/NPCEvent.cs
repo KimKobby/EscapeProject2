@@ -29,9 +29,9 @@ namespace NPC
             if (touchCount > 0)
             {
                 countGuideUI.gameObject.SetActive(true);
-                countGuideText.text = 10 - NPCEvent.touchCount + "번을 더 \n 두들기세요.";
+                countGuideText.text = 5 - NPCEvent.touchCount + "번을 더 \n 두들기세요.";
 
-                if (touchCount == 10)
+                if (touchCount == 5)
                 {
                     WakeUpNPC();
                     touchCount = 0;
@@ -50,9 +50,15 @@ namespace NPC
                 touchPoint[i].gameObject.SetActive(false);
             }
             NPC_Animation.SetTrigger("WakeUpNPC");
-            combinationUI.SetActive(true);
+            //combinationUI.SetActive(true);
             guideUI.SetActive(true);
         }
+
+        private void OnCombinationUI()
+        {
+            combinationUI.SetActive(true);
+        }
+
 
         public void SleepNPC()
         {
