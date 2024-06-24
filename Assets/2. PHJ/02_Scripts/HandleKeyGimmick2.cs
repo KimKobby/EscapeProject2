@@ -25,7 +25,7 @@ public class HandleKeyGimmick2 : MonoBehaviour
         {
             //Debug.Log("keyyyyyy");
 
-            this.gameObject.transform.parent = RootObject.gameObject.transform; // Key가 자식!!!!!
+            RootObject.gameObject.transform.parent = this.gameObject.transform; // Key가 자식!!!!!
             KeyCombineflag = true;
             Debug.Log("keyyyyyy");
 
