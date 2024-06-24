@@ -50,12 +50,13 @@ namespace NPC
                 touchPoint[i].gameObject.SetActive(false);
             }
             NPC_Animation.SetTrigger("WakeUpNPC");
-            //combinationUI.SetActive(true);
+            StartCoroutine("OnCombinationUI");
             guideUI.SetActive(true);
         }
 
-        private void OnCombinationUI()
+        IEnumerator OnCombinationUI()
         {
+            yield return new WaitForSeconds(5f);
             combinationUI.SetActive(true);
         }
 

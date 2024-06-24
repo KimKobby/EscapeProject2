@@ -79,7 +79,7 @@ namespace NPC
             }
             else
             {
-                Debug.Log("조합 할 무기가 없습니다.");
+                Debug.Log("조합 할 무기가 없거나 이미 조합을 했습니다.");
             }
         }
 
@@ -145,8 +145,6 @@ namespace NPC
             }
             objsBox.Clear();
         }
-
-
     }
 }
 
