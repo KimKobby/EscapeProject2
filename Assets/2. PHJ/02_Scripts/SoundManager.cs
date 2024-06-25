@@ -42,6 +42,13 @@ public class SoundManager : MonoBehaviour
             }
         }
     }
+
+
+    public void Stop()
+    {
+       
+        audioSource.enabled = false;
+    }
 }
 
 

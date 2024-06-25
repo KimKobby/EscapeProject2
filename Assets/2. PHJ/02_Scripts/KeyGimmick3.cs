@@ -6,7 +6,8 @@ public class KeyGimmick3 : MonoBehaviour
 {
     public GameObject Key;
     public GameObject door;
-
+    public GameObject laser;
+    public GameObject laserSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +27,12 @@ public class KeyGimmick3 : MonoBehaviour
         {
             Debug.Log("open");
             door.GetComponent<Transform>().rotation = Quaternion.Euler(0f, -120f, 0f);
+            laser.GetComponent<SoundManager>().Stop();
+            laser.GetComponent<SoundManager>().enabled = false;
+            laserSound.GetComponent<SoundManager>().Stop();
+            laserSound.GetComponent<SoundManager>().enabled = false;
+            laser.SetActive(false); 
+            
         }
         Debug.Log(other.gameObject.name);
     }
