@@ -33,6 +33,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("Audio Start" + backgroundMusic);
         playerwalkcount = 2;
         PlayMusic(backgroundMusic);
     }
@@ -43,7 +44,12 @@ public class AudioManager : MonoBehaviour
         backgrounndAS.Play();
     }
 
- 
+    public void PlayBackGroundMusic()
+    {
+        backgrounndAS.clip = soundEffects[6];
+        Debug.Log(backgrounndAS.clip);
+        backgrounndAS.Play();
+    }
 
     public void SetMusicVolume(float _volume)
     {
