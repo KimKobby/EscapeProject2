@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -70,6 +72,9 @@ public class PsychopathNPC : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            SceneManager.LoadScene(3);
+
+/*
             Debug.Log("NPC가 캐릭터에게 충돌하여 게임 종료!");
             isGameOver = true;
 #if UNITY_EDITOR
@@ -77,6 +82,7 @@ public class PsychopathNPC : MonoBehaviour
 #else
             Application.Quit();
 #endif
+*/
         }
     }
 
