@@ -15,7 +15,7 @@ namespace Song
         private Paper paper;
 
         public GameObject door;
-        [SerializeField] private bool b_LockBtn;
+        [SerializeField] private bool b_LockBtn =true;
         private string[] answers = new string[4];
 
         public string test;
@@ -29,6 +29,8 @@ namespace Song
         private bool b_numlock = true;
         private float timeNumLock = 0f;
 
+        public Animator door_l;
+        public Animator door_r;
 
         public void ClickLockBtn()
         {
@@ -56,15 +58,18 @@ namespace Song
 
         private void Update()
         {
-            //  Debug.Log("answer = " + paper.GetWord());
 
-            if (isNumLock)
+            
+            //if (isNumLock)
                 //Debug.Log(answers[0] + answers[1] + answers[2] + answers[3]);
             if (!isNumLock)
             {
-                //버튼 클릭했을때
-                if (b_LockBtn)
-                {
+                    Debug.Log(isNumLock);
+                    Debug.Log("테스트");
+                    Debug.Log("answer = " + paper.GetWord());
+                    //버튼 클릭했을때
+                    //if (b_LockBtn)
+                    //{
 
                     string s = "";
 
@@ -74,7 +79,7 @@ namespace Song
                         s += answers[i];
                     }
 
-                   // Debug.Log("S : " + s);
+                    Debug.Log("S : " + s);
 
                     if (s == paper.GetWord())
                     {
@@ -88,6 +93,7 @@ namespace Song
                         animator.SetTrigger("IsOpen");
                         b_Open = false;
                         b_LockBtn = false;
+                    isNumLock = true;
                     }
                     else
                     {
@@ -96,7 +102,7 @@ namespace Song
 
                     }
 
-                }
+                //}
 
             }
             else
@@ -187,7 +193,12 @@ namespace Song
         }
 
 
-
+        public void OpenAnim()
+        {
+            this.gameObject.SetActive(false);
+            door_l.SetTrigger("IsOpen");
+            door_r.SetTrigger("IsOpen");
+        }
 
     }
 

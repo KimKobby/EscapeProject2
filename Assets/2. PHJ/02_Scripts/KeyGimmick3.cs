@@ -25,13 +25,15 @@ public class KeyGimmick3 : MonoBehaviour
         if (other.gameObject.name == "Key" && Key.GetComponent<HandleKeyGimmick2>().KeyCombineflag == true)
             //otherの中でKeyという名前を持ったGameobjectがコライダーに衝突した場合、
         {
-            Debug.Log("open");
+           
             door.GetComponent<Transform>().rotation = Quaternion.Euler(0f, -120f, 0f);
-            laser.GetComponent<SoundManager>().Stop();
-            laser.GetComponent<SoundManager>().enabled = false;
-            laserSound.GetComponent<SoundManager>().Stop();
-            laserSound.GetComponent<SoundManager>().enabled = false;
-            laser.SetActive(false); 
+            //laser.GetComponent<SoundManager>().Stop();
+            //laser.GetComponent<SoundManager>().enabled = false;
+     
+            laser.SetActive(false);
+            laserSound.GetComponent<AudioSource>().Stop();
+            laserSound.GetComponent<AudioSource>().enabled = false;
+            Debug.Log(laserSound.GetComponent<AudioSource>());
             
         }
         Debug.Log(other.gameObject.name);
