@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.SceneManagement;
 
 namespace NavKeypad
 {
@@ -99,6 +100,9 @@ namespace NavKeypad
 
             // UI Canvas 비활성화
             canvasUI.SetActive(false);
+
+            SceneManager.LoadScene(5);
+
 
             // 잠긴 문 열기
             foreach (GameObject door in lockedDoors)
