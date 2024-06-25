@@ -13,6 +13,8 @@ namespace NavKeypad
         public TMP_Text resultText; // 결과 메시지를 표시할 TMP Text 요소
         public GameObject canvasUI; // UI Canvas 오브젝트를 참조할 변수
         public GameObject[] lockedDoors; // 잠겨있는 문 오브젝트를 참조할 변수
+        public float[] doorOpenAngles = { -90f, 90f }; // 문이 열릴 각도를 저장할 배열
+        public float doorOpenSpeed = 2f; // 문이 열릴 속도를 저장할 변수
         public Password passwordScript; // Password 스크립트를 참조할 변수
         public AudioSource audioSource; // 효과음을 재생할 AudioSource
         public AudioClip buttonPressSound; // 버튼 클릭 효과음
@@ -20,7 +22,6 @@ namespace NavKeypad
         public AudioClip incorrectSound; // 오답 효과음
         private string currentInput = ""; // 현재 입력 값
 
-       
         void Start()
         {
             // 각 변수들이 제대로 할당되었는지 확인합니다.
@@ -38,6 +39,8 @@ namespace NavKeypad
                 Debug.LogError("audioSource가 할당되지 않았습니다.");
             if (buttonPressSound == null || correctSound == null || incorrectSound == null)
                 Debug.LogError("효과음이 할당되지 않았습니다.");
+            if (doorOpenAngles == null || doorOpenAngles.Length != lockedDoors.Length)
+                Debug.LogError("doorOpenAngles 배열의 크기가 lockedDoors 배열의 크기와 일치하지 않습니다.");
 
             // 초기 상태에서 키패드 UI를 비활성화합니다.
             canvasUI.SetActive(false);
@@ -101,17 +104,37 @@ namespace NavKeypad
             // UI Canvas 비활성화
             canvasUI.SetActive(false);
 
-            SceneManager.LoadScene(5);
-
-
             // 잠긴 문 열기
-            foreach (GameObject door in lockedDoors)
+            for (int i = 0; i < lockedDoors.Length; i++)
             {
-                if (door != null)
+                if (lockedDoors[i] != null)
                 {
-                    door.SetActive(false);
+                    StartCoroutine(OpenDoor(lockedDoors[i], doorOpenAngles[i], doorOpenSpeed));
                 }
             }
+
+            // 모든 문이 열릴 동안 기다리기
+            yield return new WaitForSeconds(doorOpenSpeed);
+
+            // 씬 전환
+            SceneManager.LoadScene(5);
+        }
+
+        // 문 열기 코루틴
+        private IEnumerator OpenDoor(GameObject door, float angle, float speed)
+        {
+            Quaternion initialRotation = door.transform.rotation;
+            Quaternion targetRotation = initialRotation * Quaternion.Euler(0, angle, 0);
+            float elapsedTime = 0f;
+
+            while (elapsedTime < speed)
+            {
+                door.transform.rotation = Quaternion.Slerp(initialRotation, targetRotation, elapsedTime / speed);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            door.transform.rotation = targetRotation;
         }
 
         // 결과 메시지를 지우고 입력값 초기화하는 코루틴
