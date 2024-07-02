@@ -456,7 +456,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 64013f1050ae0294d9d7ebcf4c55cfe6, type: 3}
   - {fileID: 8300000, guid: 16f4fed5fa4500d4bbe887d564f9105f, type: 3}
   - {fileID: 8300000, guid: 9af7f5297add3da4198af62f04d2e459, type: 3}
-  player: {fileID: 0}
+  player: {fileID: 595203979}
 --- !u!4 &907544
 Transform:
   m_ObjectHideFlags: 0
@@ -2335,6 +2335,11 @@ PrefabInstance:
       propertyPath: m_CullingMask.m_Bits
       value: 4096
       objectReference: {fileID: 0}
+    - target: {fileID: 6898425883714375253, guid: 11534a2e801c04c459fb0f8772644ad4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8022504537867028233, guid: 11534a2e801c04c459fb0f8772644ad4,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2403,7 +2408,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1977425449067457706, guid: 11534a2e801c04c459fb0f8772644ad4,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 595203990}
   m_SourcePrefab: {fileID: 100100000, guid: 11534a2e801c04c459fb0f8772644ad4, type: 3}
 --- !u!1001 &433643864
 PrefabInstance:
@@ -2961,6 +2970,63 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &595203979 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1977425449067457706, guid: 11534a2e801c04c459fb0f8772644ad4,
+    type: 3}
+  m_PrefabInstance: {fileID: 401124706}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &595203986 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7045085902671410428, guid: 11534a2e801c04c459fb0f8772644ad4,
+    type: 3}
+  m_PrefabInstance: {fileID: 401124706}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595203979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03a5df2202a8b96488c744be3bd0c33e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &595203990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595203979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 919e39492806b334982b6b84c90dd927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_System: {fileID: 595203986}
+  m_TurnSpeed: 60
+  m_LeftHandTurnAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Left Hand Turn
+      m_Type: 0
+      m_ExpectedControlType: Vector2
+      m_Id: a22d0674-67d2-40e0-8c86-99b4ecd8ca7d
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  m_RightHandTurnAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Right Hand Turn
+      m_Type: 0
+      m_ExpectedControlType: Vector2
+      m_Id: 6e10a0d3-0237-402a-8894-aa168b166616
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -6493913391331992944, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
 --- !u!1 &595738433
 GameObject:
   m_ObjectHideFlags: 0

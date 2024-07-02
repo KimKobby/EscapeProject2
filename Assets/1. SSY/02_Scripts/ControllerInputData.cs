@@ -110,7 +110,7 @@ namespace Song
            
             if (rightControllerVal == 1f)
             {
-                this.GetComponent<ActionBasedSnapTurnProvider>().enabled = false;
+               // this.GetComponent<ActionBasedSnapTurnProvider>().enabled = false;
                 b_RightControllerRay = true;
                 rightRayController.SetActive(true);
                 rightDeirectController.SetActive(false);
@@ -118,7 +118,7 @@ namespace Song
             }
             else if (rightControllerVal == 0f)
             {
-                this.GetComponent<ActionBasedSnapTurnProvider>().enabled = true;
+                //this.GetComponent<ActionBasedSnapTurnProvider>().enabled = true;
                 b_RightControllerRay = false;
 
                 leftRayController.SetActive(false);
