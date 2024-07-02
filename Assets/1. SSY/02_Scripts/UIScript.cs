@@ -46,7 +46,7 @@ namespace Song
 
         public void StartClick()
         {
-            startBox.GetComponent<SocketCheck>().OnClickStartBtn();
+            startBox.GetComponent<SocketCheck>().OnClickBtn();
            // Debug.Log("StartClick");
             if (startBox.GetComponent<SocketCheck>().GetStartCheck())
             {
@@ -63,7 +63,7 @@ namespace Song
         public void SettingClick()
         {
             // Debug.Log("SettingClick");
-            settingBox.GetComponent<SocketCheck>().OnClickStartBtn();
+            settingBox.GetComponent<SocketCheck>().OnClickBtn();
 
             if (settingBox.GetComponent<SocketCheck>().GetSettingCheck())
             {

@@ -133,17 +133,15 @@ namespace Song
 
         void LeftHandCheck()
         {
-            // var leftControllerRotationVal = actionAsset.actionMaps[1].actions[1].ReadValue<Quaternion>().eulerAngles;
-
-            //Debug.Log(leftControllerRotationVal);
-
+            
+            //손목과 머리의 내적값을 구해서 처다보는지 확인
             var clockrightval = clockinnerobj.transform.right;
             var headforwrdval = headinnerobj.transform.forward;
 
             var innerval = Vector3.Dot(clockrightval, headforwrdval);
 
-            // Debug.Log("innerval :" + innerval);
-
+     
+            
             if (innerval <= -0.6f && innerval >= -1f)
             {
                 clockCanvas.transform.gameObject.SetActive(true);
@@ -216,17 +214,13 @@ namespace Song
                 Vector3 cof = controlleroffset.transform.position;
                 cameraOffset.transform.position = new Vector3(caf.x, caf.y - 1f, caf.z);
                 controlleroffset.transform.position = new Vector3(cof.x, cof.y - 1f, cof.z);
-                //this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - 0.5f, this.transform.position.z);
-
-
             }
             else
             {
                 Vector3 caf = cameraOffset.transform.position;
                 Vector3 cof = controlleroffset.transform.position;
                 cameraOffset.transform.position = new Vector3(caf.x, caf.y + 1f, caf.z);
-                controlleroffset.transform.position = new Vector3(cof.x, cof.y + 1f, cof.z);
-                //this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.5f, this.transform.position.z);
+                controlleroffset.transform.position = new Vector3(cof.x, cof.y + 1f, cof.z);              
             }
 
         }
@@ -240,7 +234,6 @@ namespace Song
         public void PlayerMoveCheck()
         {
             //Left Controller Select Value (달리기)
-            // float runInputval = actionAsset.actionMaps[2].actions[0].ReadValue<float>();
 
             //Player가 움직이고 있을 경우
             if (actionAsset.actionMaps[3].actions[5].ReadValue<Vector2>().x != 0 ||
@@ -256,8 +249,6 @@ namespace Song
                     walkcorutine = StartCoroutine(AudioManager.Inst.PlayerWalk(true, walkdelay));
                  
                 }
-              
-            
             }
             else
             {
@@ -269,12 +260,9 @@ namespace Song
                         StopCoroutine(walkcorutine);
                     }
                     AudioManager.Inst.WalkStop();
-
                 }
 
             }
-           
-
         }
 
         

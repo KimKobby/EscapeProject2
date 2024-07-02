@@ -42,7 +42,7 @@ namespace Song
             //startstr = "";
         }
 
-        public void OnClickStartBtn()
+        public void OnClickBtn()
         {
             startstr = "";
 
@@ -50,11 +50,6 @@ namespace Song
             {
                 startstr += obj.GetComponent<CustomSocketInteractor>().GetSocketString();
             }
-
-            Debug.Log("startstr : " + startstr);
-
-
-            Debug.Log("OnClickStartBt" + "startstr = " + startstr);
 
             if (startstr == "START")
             {

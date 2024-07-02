@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00006777821, g: 0.00000931182, b: 0.00000009194242,
+  m_IndirectSpecularColor: {r: 0.00006777819, g: 0.000009311744, b: 0.00000009194242,
     a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
@@ -2045,6 +2045,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1093302967846656251, guid: 11534a2e801c04c459fb0f8772644ad4,
+        type: 3}
+      propertyPath: m_Name
+      value: '[Ray]Right Controller'
+      objectReference: {fileID: 0}
     - target: {fileID: 1147578267908853420, guid: 11534a2e801c04c459fb0f8772644ad4,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2074,6 +2079,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1171314292837961136, guid: 11534a2e801c04c459fb0f8772644ad4,
+        type: 3}
+      propertyPath: m_Name
+      value: '[DR]Right Controller'
       objectReference: {fileID: 0}
     - target: {fileID: 1414004533982895838, guid: 11534a2e801c04c459fb0f8772644ad4,
         type: 3}
@@ -2138,7 +2148,7 @@ PrefabInstance:
     - target: {fileID: 1977425449067457706, guid: 11534a2e801c04c459fb0f8772644ad4,
         type: 3}
       propertyPath: m_Name
-      value: XR Origin_N
+      value: '[XR Origin]Player'
       objectReference: {fileID: 0}
     - target: {fileID: 2124439346810703497, guid: 11534a2e801c04c459fb0f8772644ad4,
         type: 3}
@@ -2174,6 +2184,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691179321101311652, guid: 11534a2e801c04c459fb0f8772644ad4,
+        type: 3}
+      propertyPath: m_Name
+      value: '[Ray]Left Controller'
       objectReference: {fileID: 0}
     - target: {fileID: 4031230566990131785, guid: 11534a2e801c04c459fb0f8772644ad4,
         type: 3}
@@ -2334,6 +2349,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 4096
+      objectReference: {fileID: 0}
+    - target: {fileID: 6331580315792555201, guid: 11534a2e801c04c459fb0f8772644ad4,
+        type: 3}
+      propertyPath: m_Name
+      value: '[DR]Left Controller '
       objectReference: {fileID: 0}
     - target: {fileID: 8022504537867028233, guid: 11534a2e801c04c459fb0f8772644ad4,
         type: 3}
