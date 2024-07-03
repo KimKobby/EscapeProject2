@@ -84,11 +84,11 @@ namespace Changhoon
                 padText.text = "O P E N";
                 StartCoroutine(OpenDoorDelay());
                 doorLock.GetComponent<OpenClose>().isSolution = true;
-                Debug.Log("¿ÀÇÂ");
+                //Debug.Log("¿ÀÇÂ");
             }
             else
             {
-                Debug.Log("¶¯");
+                //Debug.Log("¶¯");
                 inputText = "";
                 padText.text = wrongStr;
             }
@@ -100,18 +100,6 @@ namespace Changhoon
             this.gameObject.SetActive(false);
         }
 
-
-
-        //private void Update()
-        //{
-        //    if (Input.GetMouseButtonDown(2))
-        //    {
-
-        //        CheckPassword();
-
-
-        //    }
-        //}
     }
 }
 

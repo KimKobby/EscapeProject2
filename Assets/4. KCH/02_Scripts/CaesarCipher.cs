@@ -35,12 +35,12 @@ namespace Changhoon
 
         private TMP_Text hintText;
 
+        private const int alphabet = 26; // 알파벳 26개
+        private int cipherLength = 4; // 암호 자릿수 
         private List<int> chosenNumbers = new List<int>(); // 랜덤으로 생성된 숫자들
-        private const int alphabetLength = 26; // 알파벳 26개
-        private int cipherLenght = 4; // 암호 자릿수 
         private string textCaesarCipher; // 표시 할 시저 힌트 문구
         private string direction;  // 동, 서 방향 값
-        private int directionWELenght; // 동, 서 이동거리
+        private int directionDistance; // 동, 서 이동거리
         private List<int> computeNumber = new List<int>(); // 계산한 정답 숫자들
         public string password { get; private set; } // string으로 바꾼 정답 암호
 
@@ -53,16 +53,16 @@ namespace Changhoon
         }
 
 
-        private void RandomNumber()  // 숫자 랜덤 생성 함수
+        private void CreateRandomNumber()  // 숫자 랜덤 생성 함수
         {
 
             chosenNumbers.Clear();  // 생성된 랜덤 숫자 리스트 초기화
-            for (int i = 0; i < cipherLenght; i++)  // 암호 자릿수 만큼 랜덤 숫자 생성
+            for (int i = 0; i < cipherLength; i++)  // 암호 자릿수 만큼 랜덤 숫자 생성
             {
                 int randomNumber;
                 do
                 {
-                    randomNumber = Random.Range(1, alphabetLength + 1); // 1부터 26 사이의 랜덤 숫자 선택
+                    randomNumber = Random.Range(1, alphabet + 1); // 1부터 26 사이의 랜덤 숫자 선택
                 }
                 while (chosenNumbers.Contains(randomNumber)); // 이미 선택된 숫자인지 확인
 
@@ -71,13 +71,13 @@ namespace Changhoon
         }
 
 
-        private void Direction()  // 방향 랜덤 생성 함수
+        private void CreateDirection()  // 방향 랜덤 생성 함수
         {
             string[] directionWE = { "동쪽", "서쪽" }; // 동,서 쪽 방향
-            int directionWEMaxLenght = 3; // 동,서 이동 최대 이동거리
+            int maxDistance = 3; // 동,서 이동 최대 이동거리
             int randomIndex = Random.Range(0, directionWE.Length);  // 랜덤으로 동쪽인지 서쪽인지 뽑기
             direction = directionWE[randomIndex];
-            directionWELenght = Random.Range(1, directionWEMaxLenght + 1);  // 랜덤 방향으로 몇 이동할지 랜덤 뽑기
+            directionDistance = Random.Range(1, maxDistance + 1);  // 랜덤 방향으로 몇 이동할지 랜덤 뽑기
         }
 
 
@@ -91,45 +91,45 @@ namespace Changhoon
                 int temp;
                 switch (direction)
                 {
-                    case "동쪽":
-                        temp = chosenNumbers[i] - directionWELenght;
+                    case "서쪽":
+                        temp = chosenNumbers[i] - directionDistance;
                         if (temp < 1)
                         {
-                            temp += alphabetLength;
+                            temp += alphabet;
                         }
                         computeNumber.Add(temp);
                         break;
-                    case "서쪽":
-                        temp = chosenNumbers[i] + directionWELenght;
-                        if (temp > alphabetLength)
+                    case "동쪽":
+                        temp = chosenNumbers[i] + directionDistance;
+                        if (temp > alphabet)
                         {
-                            temp -= alphabetLength;
+                            temp -= alphabet;
                         }
                         computeNumber.Add(temp);
                         break;
                 }
                 password += computeNumber[i].ToString();
             }
-            Debug.Log("시저암호 정답" + password);
+            //Debug.Log("시저암호 정답" + password);
         }
 
         private void CreateCaesarCipher() // 시저 암호 랜덤 숫자 조합 함수
         {
             textCaesarCipher = null;  // 시저 암호 힌트 문구 초기화
-            RandomNumber();
-            Direction();
+            CreateRandomNumber();
+            CreateDirection();
 
-            for (int i = 0; i < cipherLenght; i++)  // 시저 암호 랜덤 숫자 조합
+            for (int i = 0; i < cipherLength; i++)  // 시저 암호 랜덤 숫자 조합
             {
                 textCaesarCipher += chosenNumbers[i].ToString();
-                if (i != cipherLenght - 1) // 마지막 숫자 조합 전까지 - 추가
+                if (i != cipherLength - 1) // 마지막 숫자 조합 전까지 - 추가
                 {
                     textCaesarCipher += " - ";
                 }
             }
 
             // 최종 암호 표시 조합
-            textCaesarCipher += "\n" + direction + "으로 " + directionWELenght + "걸음..";
+            textCaesarCipher += "\n" + direction + "으로 " + directionDistance + "걸음..";
             hintText.text = textCaesarCipher;
             //Debug.Log(textCaesarCipher);
 
