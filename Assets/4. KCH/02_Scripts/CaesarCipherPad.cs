@@ -1,4 +1,3 @@
-using Changhoon;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Changhoon
+namespace Cipher
 {
     public class CaesarCipherPad : MonoBehaviour
     {
@@ -23,6 +22,8 @@ namespace Changhoon
 
         private string startStr = "P A S S  W O R D";
         private string wrongStr = "W A R N I G";
+
+        private int wrongCount;
 
         [SerializeField] private GameObject doorLock;
 
@@ -79,7 +80,9 @@ namespace Changhoon
         private void CheckPassword()
         {
             ConvertTextToNumber();
-            if (convertPassword == Changhoon.CaesarCipher.Instance.password)
+            //Debug.Log(convertPassword + "입력된 패스워드");
+            //Debug.Log(Cipher.CaesarCipher.Instance.password + "정답 패스워드");
+            if (convertPassword == Cipher.CaesarCipher.Instance.password)
             {
                 padText.text = "O P E N";
                 StartCoroutine(OpenDoorDelay());
@@ -89,8 +92,20 @@ namespace Changhoon
             else
             {
                 //Debug.Log("땡");
+                wrongCount += 1;
+
+                if (wrongCount >= 3)
+                {
+                    padText.text = "R E S E T";
+                    Cipher.CaesarCipher.Instance.CreateCaesarCipher();
+                    wrongCount = 0;
+                }
+                else
+                {
+                    padText.text = wrongStr;
+                }
+
                 inputText = "";
-                padText.text = wrongStr;
             }
         }
 

@@ -4,7 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
-namespace Changhoon
+namespace Cipher
 {
     public class CaesarCipher : MonoBehaviour
     {
@@ -110,10 +110,10 @@ namespace Changhoon
                 }
                 password += computeNumber[i].ToString();
             }
-            //Debug.Log("시저암호 정답" + password);
+            Debug.Log("시저암호 정답" + password);
         }
 
-        private void CreateCaesarCipher() // 시저 암호 랜덤 숫자 조합 함수
+        public void CreateCaesarCipher() // 시저 암호 랜덤 숫자 조합 함수
         {
             textCaesarCipher = null;  // 시저 암호 힌트 문구 초기화
             CreateRandomNumber();
