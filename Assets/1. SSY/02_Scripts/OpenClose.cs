@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class OpenClose : MonoBehaviour
+public class OpenClose : MonoBehaviour , ISwitchable
 {
      [SerializeField] public GameObject GrabInteractor;
     [SerializeField] public float default_pos;
@@ -31,10 +31,28 @@ public class OpenClose : MonoBehaviour
 
     public bool isSolution = false;
 
+    private bool isActive;
+    public bool IsActive => isActive;
+
+
+
     public void SetLock(bool _lock)
     {
         isSolution = _lock;
         Debug.Log("lOCK Ç®¸²");
+    }
+
+    public void Activate()
+    {
+        isRot = true;
+        isActive = true;
+        
+    }
+    public void Deactivate()
+    {
+        isRot = false;
+        isActive = false;
+        
     }
 
 
@@ -60,7 +78,7 @@ public class OpenClose : MonoBehaviour
 
             if(!isOpen)
             {
-                //this.transform.GetComponent<Collider>().enabled = false;  
+               
                 elapsedTime += Time.deltaTime;
                 float t = Mathf.Clamp01(elapsedTime / durationTime);
                 transform.rotation = Quaternion.Lerp(startRotation, endRotation, t);
@@ -89,6 +107,9 @@ public class OpenClose : MonoBehaviour
           
         }
     }
+
+
+
 
     private void OnTriggerEnter(Collider other)
     {
