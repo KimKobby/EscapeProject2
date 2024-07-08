@@ -19,7 +19,6 @@ namespace Weapons
 
         private void Start()
         {
-            
             GEN_RandomWeapon();
         }
 
@@ -39,7 +38,7 @@ namespace Weapons
             foreach (GameObject weaponInList in meleeWeapons)
             {
                 GEN_Area();
-                weaponInList.SetActive(Random.value > 0f);
+                weaponInList.SetActive(Random.value > 0.5f);
                 GameObject weapon = Instantiate(weaponInList, spawnPosition, Quaternion.identity);
             }
         }

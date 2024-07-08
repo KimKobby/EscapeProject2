@@ -33,8 +33,7 @@ namespace Cipher
             }
         }
 
-        private TMP_Text hintText;
-
+        private TMP_Text hintText; // 표시할 힌트
         private const int alphabet = 26; // 알파벳 26개
         private int cipherLength = 4; // 암호 자릿수 
         private List<int> chosenNumbers = new List<int>(); // 랜덤으로 생성된 숫자들
@@ -136,16 +135,5 @@ namespace Cipher
             // 진짜 암호 변환
             ConvertPassword();
         }
-
-
-        //private void Update()
-        //{
-        //    if (Input.GetMouseButtonDown(1))
-        //    {
-        //        CreateCaesarCipher();
-        //    }
-        //}
-
     }
-
 }

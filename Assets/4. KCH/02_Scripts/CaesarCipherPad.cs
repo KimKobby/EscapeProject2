@@ -82,7 +82,8 @@ namespace Cipher
             ConvertTextToNumber();
             //Debug.Log(convertPassword + "입력된 패스워드");
             //Debug.Log(Cipher.CaesarCipher.Instance.password + "정답 패스워드");
-            if (convertPassword == Cipher.CaesarCipher.Instance.password)
+            
+            if (convertPassword == CaesarCipher.Instance.password)
             {
                 padText.text = "O P E N";
                 StartCoroutine(OpenDoorDelay());
@@ -97,7 +98,7 @@ namespace Cipher
                 if (wrongCount >= 3)
                 {
                     padText.text = "R E S E T";
-                    Cipher.CaesarCipher.Instance.CreateCaesarCipher();
+                    CaesarCipher.Instance.CreateCaesarCipher();
                     wrongCount = 0;
                 }
                 else
