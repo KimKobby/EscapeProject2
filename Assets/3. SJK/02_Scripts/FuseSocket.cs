@@ -51,18 +51,11 @@ namespace Shim
                 fuseInserted = false;
                 Debug.Log("퓨즈가 연결되었습니다.");
 
-                // 특정 소켓에 퓨즈가 삽입되었을 때 라이트 머티리얼 변경
+                //  소켓에 퓨즈가 삽입되었을 때 라이트 머티리얼 변경
                 ChangeLightMaterial(redMaterial);
                 Debug.Log("Material이 red으로 변경됩니다.");
 
-                // 퓨즈 삽입 소리 재생
-                //PlaySound(insertSound);
-
-                // 모든 퓨즈가 연결되었는지 확인
-                //if (AreAllFusesConnected())
-                //{
-                //    PlaySound(allFusesConnectedSound);
-                //}
+               
             }
         }
 
